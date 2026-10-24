@@ -1,0 +1,43 @@
+# --- Secret / env ---
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+credentials.*
+
+# --- Go ---
+agent/polaris-agent
+*.exe
+vendor/
+*.test
+*.out
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# --- DB / runtime ---
+*.sqlite
+*.db
+*.log
+polaris.db
+
+# --- Evidence / data lokal ---
+evidence/*
+!evidence/.gitkeep
+data/*
+!data/.gitkeep
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
