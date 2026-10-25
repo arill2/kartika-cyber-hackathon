@@ -51,3 +51,7 @@ submission/*.log
 submission/*.out
 submission/*.toc
 submission/*.txt
+
+# --- Rekaman video (ukurannya besar, tempatnya di YouTube) ---
+submission/video/*
+!submission/video/.gitkeep

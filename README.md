@@ -4,6 +4,10 @@
 
 Purwarupa dan dokumentasi untuk **Kartika Cyber Hackathon 2026** (PUSSIBERAD x Codepolitan).
 
+> **Sedang jeda dan mau lanjut?** Buka [`LANJUTKAN.md`](LANJUTKAN.md). Isinya
+> status proyek, dua langkah yang tersisa (rekam video dan isi form), perintah
+> yang dibutuhkan, dan daftar jebakan operasional.
+
 ---
 
 ## One-liner
@@ -182,6 +186,7 @@ kartika-cyber-hackathon/
 ├── submission/         # slide deck, thumbnail, proposal
 ├── screenshot/         # tangkapan layar untuk form submission
 ├── DESIGN.md           # arah desain UI + tabel referensi + catatan perubahan
+├── LANJUTKAN.md        # serah-terima: status, dua langkah tersisa, jebakan operasional
 └── README.md
 ```
 
@@ -278,6 +283,8 @@ Dokumen ini sengaja menyebut batasnya di depan, bukan menyembunyikannya.
 | [12-mitre-mapping.md](docs/12-mitre-mapping.md) | Tabel pemetaan MITRE ATT&CK |
 | [13-video-script.md](docs/13-video-script.md) | Naskah rekaman video demo, dipetakan ke `demo.sh` |
 | [14-bukti-demo.md](docs/14-bukti-demo.md) | Keluaran run nyata, angka per angka |
+| [15-antislop-gate.md](docs/15-antislop-gate.md) | Laporan Delivery Gate, bukti per butir |
+| [LANJUTKAN.md](LANJUTKAN.md) | Titik lanjut setelah jeda: status, rekam video, isi form |
 
 Arah desain UI ada di [DESIGN.md](DESIGN.md): palet, tipografi, aturan salinan,
 tabel referensi, dan catatan perubahan.
