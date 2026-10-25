@@ -1,4 +1,4 @@
-# 08 — Alignment dengan Kriteria Penjurian
+# 08: Alignment dengan Kriteria Penjurian
 
 Strategi: petakan setiap keunggulan POLARIS ke **bobot penilaian resmi** dan
 **latar juri**. Ini yang menentukan menang-tidaknya.
@@ -15,7 +15,7 @@ Strategi: petakan setiap keunggulan POLARIS ke **bobot penilaian resmi** dan
 
 ---
 
-## 1. Relevansi & Manfaat (25%) — Kebutuhan IT/OT TNI AD
+## 1. Relevansi & Manfaat (25%): Kebutuhan IT/OT TNI AD
 
 **Yang dijual:**
 - Deteksi menyentuh **IT + OT/ICS** (Modbus/S7/HMI decoy).
@@ -24,7 +24,7 @@ Strategi: petakan setiap keunggulan POLARIS ke **bobot penilaian resmi** dan
 - Mengurangi beban analis SOC (anti alert-fatigue).
 
 **Kalimat kunci:**
-> "Kami tidak hanya melindungi server IT, tapi juga menyentuh protokol industri —
+> "Kami tidak hanya melindungi server IT, tapi juga menyentuh protokol industri : 
 > dan semuanya berjalan tanpa internet, sesuai realitas jaringan satuan."
 
 ---
@@ -39,12 +39,12 @@ Strategi: petakan setiap keunggulan POLARIS ke **bobot penilaian resmi** dan
 - **AI summarizer** (opsional) untuk narasi incident.
 
 **Kalimat kunci:**
-> "Deteksi kami bukan tebakan. Interaksi dengan umpan adalah bukti intent —
+> "Deteksi kami bukan tebakan. Interaksi dengan umpan adalah bukti intent : 
 > deterministik, auditable, hampir tanpa false positive."
 
 ---
 
-## 3. Fungsionalitas Purwarupa (25%) — EKSEKUSI
+## 3. Fungsionalitas Purwarupa (25%): EKSEKUSI
 
 Ini bobot terbesar yang bergantung penuh pada kerja nyata. Prioritas:
 - **Harus jalan & bisa didemo live.**
@@ -71,7 +71,7 @@ Ini bobot terbesar yang bergantung penuh pada kerja nyata. Prioritas:
 - Roadmap pengembangan lanjut jelas (PostgreSQL, integrasi SOAR, sensor OT).
 
 **Kalimat kunci:**
-> "Dari nol ke terlindung dalam satu baris perintah — dan jalan sepenuhnya on-prem."
+> "Dari nol ke terlindung dalam satu baris perintah: dan jalan sepenuhnya on-prem."
 
 ---
 
@@ -97,7 +97,7 @@ jadi lebih jelas terbaca juri).
 | **Mahrus Qusaeri** | Network Security / **Offensive & Practical Defense** | Fingerprinting, demo live nmap/hydra, bypass-resistance, realisme decoy |
 | **Sofian Hadiwijaya** | Applied AI / GenAI | AI summarizer, tapi *dengan* batas jelas (AI ringkas, bukan putuskan) |
 
-**Kesimpulan:** menangkan hati ketiganya sekaligus —
+**Kesimpulan:** menangkan hati ketiganya sekaligus , 
 **detection engineering rigor (Aghni) + demo ofensif meyakinkan (Mahrus) + AI yang
 bertanggung jawab (Sofian).**
 

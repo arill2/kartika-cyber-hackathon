@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>POLARIS: slide penjelasan Kartika Cyber Hackathon 2026</title>
+<style>
+  /* Sumber slide. Hasil ekspor: POLARIS_Slides_Kartika_2026.pdf lewat
+     chromium --headless --print-to-pdf. Ukuran tiap slide 1280x720.
+     Arah desain dan alasan: DESIGN.md di akar repo. */
+  :root{
+    --bg:#0e1116; --panel:#161a20; --panel-2:#1c2128; --panel-3:#20262e;
+    --seam:#2b323c; --line:#647082;
+    --text:#e9edf2; --muted:#9aa5b1; --accent:#5eead4;
+    --crit:#ff6b6b; --high:#ff9f43; --med:#e8c547; --ok:#6ddb8f;
+    --f-ui:ui-sans-serif,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --f-data:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  @page{size:1280px 720px;margin:0}
+  html,body{margin:0;background:#000}
+  body{font-family:var(--f-ui);color:var(--text);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  .slide{
+    width:1280px;height:720px;background:var(--bg);position:relative;
+    overflow:hidden;display:flex;flex-direction:column;
+    page-break-after:always;break-after:page
+  }
+  .slide:last-child{page-break-after:auto;break-after:auto}
+
+  /* kepala slide: nameplate plus nomor */
+  .s-head{
+    display:flex;align-items:center;gap:12px;padding:16px 40px;
+    background:var(--panel);border-bottom:1px solid var(--seam);flex:none
+  }
+  .s-head svg{width:24px;height:24px;color:var(--accent)}
+  .s-head .word{font-weight:750;letter-spacing:.22em;font-size:14px}
+  .s-head .sec{font-size:12.5px;color:var(--muted);margin-left:12px;padding-left:14px;border-left:1px solid var(--seam)}
+  .s-head .no{margin-left:auto;font-family:var(--f-data);font-size:12.5px;color:var(--muted)}
+
+  .s-body{flex:1;padding:34px 40px;min-height:0;display:flex;flex-direction:column}
+  h1{margin:0;font-size:40px;line-height:1.16;letter-spacing:-.02em;font-weight:680}
+  h2{margin:0 0 6px;font-size:27px;line-height:1.2;letter-spacing:-.01em;font-weight:660}
+  h3{margin:0 0 7px;font-size:15.5px;font-weight:650}
+  p{margin:0}
+  .lead{font-size:17.5px;line-height:1.55;color:#c6d0dc;max-width:96ch}
+  .muted{color:var(--muted)}
+  code{font-family:var(--f-data);font-size:.92em;color:#a8d8ea}
+  .accent{color:var(--accent)}
+  em{font-style:normal;color:var(--accent)}
+
+  /* ---------- cover ---------- */
+  .cover .s-body{padding:0;display:grid;grid-template-columns:1fr 300px}
+  .cover-main{padding:56px 48px;display:flex;flex-direction:column;justify-content:center}
+  .cover-main h1{font-size:52px}
+  .cover-main .lead{margin-top:24px;font-size:18.5px}
+  .cover-tags{margin-top:34px;display:flex;gap:9px;flex-wrap:wrap}
+  .cover-side{background:var(--panel);border-left:1px solid var(--seam);padding:30px 26px;display:flex;flex-direction:column;justify-content:center;gap:0}
+  .cover-side .k{font-family:var(--f-data);font-size:11.5px;color:var(--muted);padding-top:16px}
+  .cover-side .k:first-child{padding-top:0}
+  .cover-side .v{font-size:14.5px;margin-top:3px}
+  .cover-side .k,.cover-side .v{border-bottom:1px solid var(--seam);padding-bottom:13px}
+
+  /* ---------- chip ---------- */
+  .chip{
+    display:inline-block;font-family:var(--f-data);font-size:12.5px;color:#b6c0cc;
+    background:#1b2129;border:1px solid var(--seam);border-radius:3px;padding:5px 11px
+  }
+  .chip.hot{color:var(--accent);border-color:#2b6b60;background:#12302c}
+
+  /* ---------- daftar bernomor ---------- */
+  .nums{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:1px;background:var(--seam);border:1px solid var(--seam);flex:1;min-height:0;grid-auto-rows:1fr}
+  .nums li{background:var(--bg);display:grid;grid-template-columns:58px 1fr;gap:18px;padding:16px 20px}
+  .nums .n{font-family:var(--f-data);font-size:20px;font-weight:700;color:var(--line)}
+  .nums p{color:var(--muted);font-size:14.5px;line-height:1.5;max-width:96ch}
+
+  /* ---------- tabel ---------- */
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  caption{text-align:left;color:var(--muted);font-size:12px;padding-bottom:9px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--seam);vertical-align:top}
+  thead th{font-size:11.5px;color:var(--muted);font-weight:650}
+  tbody tr td:first-child{color:var(--muted)}
+  table.split tbody td:last-child{color:var(--text);border-left:1px solid var(--seam);background:var(--panel-2)}
+  table.mono td:first-child{font-family:var(--f-data);color:#cfd8e3;white-space:nowrap}
+
+  /* ---------- kotak tiga kolom ---------- */
+  /* Baris grid dibuat sama tinggi dan kotaknya memakai warna panel, supaya sisa
+     ruang di bawah benar-benar terpakai dan tidak tampak sebagai kekosongan. */
+  .cols{display:grid;gap:1px;background:var(--seam);border:1px solid var(--seam);margin-top:20px;flex:1;min-height:0;grid-auto-rows:1fr}
+  .cols.c2{grid-template-columns:1fr 1fr}
+  .cols.c3{grid-template-columns:repeat(3,1fr)}
+  .box{background:var(--panel);padding:18px 20px;min-width:0}
+  .box p{color:var(--muted);font-size:14px;line-height:1.5}
+
+  /* ---------- angka besar ---------- */
+  /* ---------- baris angka ringkas ---------- */
+  /* Dipakai kalau angka pendukung perlu tampil tanpa mendominasi judul slide. */
+  .readout{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--seam);border:1px solid var(--seam);margin-top:14px}
+  .readout div{background:var(--panel);padding:13px 16px}
+  .readout b{display:block;font-family:var(--f-data);font-size:23px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .readout span{display:block;font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.35}
+  .readout .good b{color:var(--ok)}
+
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--seam);border:1px solid var(--seam);margin-top:22px}
+  .stat{background:var(--panel);padding:20px 18px}
+  .stat b{display:block;font-family:var(--f-data);font-size:38px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .stat span{display:block;font-size:12px;color:var(--muted);margin-top:8px}
+  .stat.good b{color:var(--ok)}
+
+  /* ---------- chip port ---------- */
+  .ports{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .ports li{font-family:var(--f-data);font-size:12px;color:#cfd8e3;background:#1b2129;border:1px solid var(--seam);border-radius:3px;padding:3px 8px}
+  .ports li span{color:var(--muted)}
+
+  /* ---------- arsitektur ---------- */
+  .arch{display:grid;grid-template-columns:1fr 54px 1fr 54px 1fr;align-items:stretch;gap:0;margin-top:24px;flex:1;min-height:0}
+  .arch .node{background:var(--panel);border:1px solid var(--seam);border-radius:6px;padding:18px 18px;display:flex;flex-direction:column;min-width:0}
+  .arch .node h3{font-size:15px}
+  .arch .node .tag{font-family:var(--f-data);font-size:11.5px;color:var(--accent);margin-bottom:9px}
+  .arch .node ul{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px;font-size:13.5px;color:var(--muted)}
+  .arch .arrow{display:flex;align-items:center;justify-content:center;color:var(--line);font-family:var(--f-data);font-size:11px;text-align:center}
+
+  /* ---------- gambar bukti ---------- */
+  /* Tinggi dipatok, bukan flex, karena flex di dalam cetak PDF dihitung berbeda
+     oleh mesin cetak dan hasilnya tidak bisa diandalkan. object-fit:cover dipakai
+     supaya gambar tidak gepeng saat dipotong. */
+  .shot{margin:18px 0 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel)}
+  .shot img{width:100%;display:block}
+  .shot.crop{height:352px;border:0;border-radius:0;border-bottom:1px solid var(--seam)}
+  .shot.crop img{height:352px;object-fit:cover;object-position:top left}
+
+  /* ---------- spesifikasi ---------- */
+  .spec{display:grid;grid-template-columns:1fr auto;margin:0;border-top:1px solid var(--seam)}
+  .spec dt{padding:9px 16px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--seam)}
+  .spec dd{margin:0;padding:9px 16px;font-family:var(--f-data);font-size:13.5px;text-align:right;border-bottom:1px solid var(--seam);border-left:1px solid var(--seam)}
+  .spec dd.hi{color:var(--crit);font-weight:700}
+  .spec dd.good{color:var(--ok)}
+
+  .quote{
+    border-left:3px solid var(--accent);background:var(--panel-2);border-radius:6px;
+    padding:15px 18px;font-size:14.5px;line-height:1.62;color:#dbe3ec;margin-top:18px
+  }
+
+  .foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--seam);display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .foot .sig{margin-left:auto;font-family:var(--f-data);font-size:11.5px;color:var(--line)}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--seam);border:1px solid var(--seam);margin-top:20px;flex:1;min-height:0;grid-auto-rows:1fr}
+  .mitre-grid{display:grid;grid-template-columns:1fr auto;gap:0;font-size:13.5px}
+  .mitre-grid dt{padding:8px 0;color:var(--muted);border-bottom:1px solid var(--seam)}
+  .mitre-grid dd{margin:0;padding:8px 0 8px 14px;font-family:var(--f-data);font-size:12.5px;color:#cfd8e3;text-align:right;border-bottom:1px solid var(--seam)}
+</style>
+</head>
+<body>
+
+<!-- ==================================================== 1 cover -->
+<section class="slide cover">
+  <div class="s-body">
+    <div class="cover-main">
+      <p class="s-head" style="background:none;border:0;padding:0 0 22px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="word">POLARIS</span>
+      </p>
+      <h1>Firewall menahan yang terlihat.<br><em>POLARIS</em> menangkap yang menyembunyikan diri.</h1>
+      <p class="lead">
+        Peringatan dini berbasis tipuan untuk jaringan IT dan OT. Setiap interaksi dengan
+        umpan adalah bukti intent, bukan tebakan statistik.
+      </p>
+      <div class="cover-tags">
+        <span class="chip hot">deteksi deterministik</span>
+        <span class="chip">satu binary Go</span>
+        <span class="chip">on-prem dan air-gap</span>
+        <span class="chip">MITRE ATT&amp;CK plus ATT&amp;CK for ICS</span>
+      </div>
+    </div>
+    <aside class="cover-side">
+      <p class="k">Ajang</p>
+      <p class="v">Kartika Cyber Hackathon 2026</p>
+      <p class="k">Kategori</p>
+      <p class="v">02 Defensive Shield, penangkalan</p>
+      <p class="k">Penyelenggara</p>
+      <p class="v">PUSSIBERAD bersama Codepolitan</p>
+      <p class="k">Status purwarupa</p>
+      <p class="v">Berjalan dan sudah diuji dengan alat penyerang sungguhan</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ==================================================== 2 masalah -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Masalah</span><span class="no">02</span>
+  </header>
+  <div class="s-body">
+    <h2>Tiga masalah struktural, bukan kekurangan alat</h2>
+    <p class="lead muted">Ketiganya sudah lama diketahui, dan ketiganya belum selesai.</p>
+    <ol class="nums">
+      <li><span class="n">01</span><div><h3>Alert fatigue</h3>
+        <p>IDS dan SIEM berbasis anomali menghasilkan ratusan sampai ribuan alert per hari,
+        mayoritas keliru. Sinyal penting tenggelam, dan analis berhenti mempercayai sistemnya.</p></div></li>
+      <li><span class="n">02</span><div><h3>Penyerang yang sudah masuk jadi tak terlihat</h3>
+        <p>Perangkat perimeter tidak melihat apa yang terjadi setelah initial access.
+        Pemindaian internal, lateral movement, dan pencarian kredensial berjalan di jalur yang
+        dianggap tepercaya.</p></div></li>
+      <li><span class="n">03</span><div><h3>Konteks jaringan militer</h3>
+        <p>Banyak jaringan TNI AD terisolasi atau air-gap, dan mencampur IT dengan OT seperti
+        SCADA, PLC, serta HMI. Solusi yang bergantung pada cloud tidak bisa dipasang di sana.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================================================== 3 inversi -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Inversi</span><span class="no">03</span>
+  </header>
+  <div class="s-body">
+    <h2>Kesalahan terbesarnya: mencoba menebak arti kata normal</h2>
+    <p class="lead">
+      Deteksi klasik menghabiskan tenaga untuk memisahkan lalu lintas normal dari yang
+      mencurigakan. Pemisahan itu sifatnya probabilistik, dan di situlah false positive lahir.
+    </p>
+    <p style="font-size:15.5px;color:#dbe3ec;line-height:1.62;margin-top:16px">
+      Yang POLARIS lakukan sebagai gantinya: menanam umpan yang secara desain mustahil disentuh
+      pengguna sah. Pertanyaannya berubah dari "apakah ini mencurigakan" menjadi "mengapa ada
+      yang menyentuh ini", dan jawaban untuk pertanyaan kedua selalu punya bukti.
+    </p>
+    <div class="cols c3" style="margin-top:16px">
+      <div class="box">
+        <h3>Port palsu tanpa layanan</h3>
+        <p>32 port umpan menerima sambungan. Tidak ada pengguna sah yang punya alasan
+        menyentuhnya, jadi tidak ada sinyal jinak yang perlu dipisahkan.</p>
+      </div>
+      <div class="box">
+        <h3>Berkas kredensial tak dipakai</h3>
+        <p>11 berkas umpan termasuk <code>.env</code> dan kredensial cloud. Tidak ada proses
+        yang seharusnya membacanya, sehingga pembacaan berarti bukti.</p>
+      </div>
+      <div class="box">
+        <h3>Perangkat OT tiruan</h3>
+        <p>Decoy Modbus dan HMI meniru perangkat ICS yang tidak ada di topologi nyata. Probe
+        protokol OT ke sana tidak punya penjelasan wajar.</p>
+      </div>
+    </div>
+    <div class="quote">
+      Umpan tidak pernah tersentuh operasi normal, jadi tidak ada ambang batas untuk dituning
+      dan tidak ada sinyal jinak yang perlu dipisahkan pada saat keputusan diambil.
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 4 perbandingan -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Perbandingan</span><span class="no">04</span>
+  </header>
+  <div class="s-body">
+    <h2>Dua pendekatan, satu baris dibaca sebagai pasangan</h2>
+    <table class="split" style="margin-top:16px">
+      <caption>Setiap baris membandingkan sifat yang sama pada dua pendekatan</caption>
+      <thead><tr><th scope="col">IDS atau IPS konvensional</th><th scope="col">POLARIS</th></tr></thead>
+      <tbody>
+        <tr><td>Deteksi probabilistik lewat anomali</td><td>Deteksi deterministik lewat umpan</td></tr>
+        <tr><td>Ribuan alert, banyak yang keliru</td><td>Sedikit alert, semuanya dari bukti sentuhan</td></tr>
+        <tr><td>Perlu tuning ambang batas</td><td>Tidak ada ambang batas untuk dituning</td></tr>
+        <tr><td>Bergantung pada pola serangan yang sudah dikenal</td><td>Bergantung pada satu fakta: tidak ada pengguna sah di umpan</td></tr>
+        <tr><td>Butuh cloud atau threat intelligence</td><td>Sepenuhnya on-prem, jalan di jaringan tertutup</td></tr>
+        <tr><td>Hanya IT</td><td>IT dan OT atau ICS</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">
+      <span class="chip hot">nol ambang batas untuk dituning</span>
+      <span class="chip">setiap alert berasal dari bukti sentuhan</span>
+      <span class="sig">perbandingan sifat, bukan perbandingan merek</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 5 yang dibangun -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Yang sudah dibangun</span><span class="no">05</span>
+  </header>
+  <div class="s-body">
+    <h2>Purwarupa yang berjalan, bukan mockup</h2>
+    <div class="stats" style="margin-top:16px">
+      <div class="stat"><b>32</b><span>listener port umpan</span></div>
+      <div class="stat"><b>11</b><span>berkas honeytoken</span></div>
+      <div class="stat"><b>2</b><span>decoy OT/ICS (Modbus, HMI)</span></div>
+      <div class="stat"><b>12</b><span>teknik ATT&amp;CK</span></div>
+      <div class="stat good"><b>0</b><span>dependensi eksternal di agen</span></div>
+    </div>
+    <div class="cols c2" style="margin-top:16px">
+      <div class="box">
+        <h3>Umpan pada lapisan jaringan</h3>
+        <ul class="ports">
+          <li>:21 <span>ftp</span></li><li>:23 <span>telnet</span></li><li>:25 <span>smtp</span></li>
+          <li>:80 <span>http</span></li><li>:445 <span>smb</span></li><li>:502 <span>modbus</span></li>
+          <li>:2222 <span>ssh</span></li><li>:2375 <span>docker</span></li><li>:3306 <span>mysql</span></li>
+          <li>:3389 <span>rdp</span></li><li>:6379 <span>redis</span></li><li>:8080 <span>hmi</span></li>
+          <li>:9200 <span>elasticsearch</span></li><li>:27017 <span>mongodb</span></li>
+        </ul>
+        <p style="margin-top:11px">Daftar lengkapnya 32 port, termasuk NetBIOS, Oracle, MSSQL,
+        memcached, VNC, dan WebLogic.</p>
+      </div>
+      <div class="box">
+        <h3>Umpan pada lapisan yang lebih dalam</h3>
+        <p><strong style="color:var(--text)">Berkas honeytoken.</strong> <code>.env</code>,
+        <code>credentials.txt</code>, <code>id_rsa_backup</code>, <code>.aws/credentials</code>,
+        <code>.git/config</code>, <code>vault-token.txt</code>, dan lainnya. Dipantau dengan
+        inotify, jadi membaca isinya sudah memicu event.</p>
+        <p style="margin-top:10px"><strong style="color:var(--text)">Kredensial canary.</strong>
+        Kredensial palsu berisi URL beacon. Siapa pun yang memakainya akan menghubungi URL itu,
+        dan itu bukti langsung bahwa kredensial sudah dipanen lalu dipakai.</p>
+        <p style="margin-top:10px"><strong style="color:var(--text)">Decoy OT atau ICS.</strong>
+        Modbus TCP pada :502, HMI pada :8080, plus banner perangkat dan form login palsu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 6 arsitektur -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Arsitektur</span><span class="no">06</span>
+  </header>
+  <div class="s-body">
+    <h2>Tiga komponen, satu binary agen, nol infrastruktur baru</h2>
+    <div class="arch">
+      <div class="node">
+        <p class="tag">node satuan</p>
+        <h3>Agen Go</h3>
+        <ul>
+          <li>Menanam umpan dan membuka listener</li>
+          <li>Memantau berkas dengan inotify</li>
+          <li>Menangkap payload dan permintaan HTTP</li>
+          <li>Menyimpan ke spool lokal bila collector mati</li>
+          <li>Hanya pustaka standar Go</li>
+        </ul>
+      </div>
+      <div class="arrow">tangkap<br>kirim</div>
+      <div class="node">
+        <p class="tag">satu collector pusat</p>
+        <h3>Collector dan engine</h3>
+        <ul>
+          <li>Python dan FastAPI</li>
+          <li>Menyaring aktivitas jinak yang sudah dikenal</li>
+          <li>Menggabungkan event menjadi incident</li>
+          <li>Menilai severity dan memetakan ATT&amp;CK</li>
+          <li>SQLite tertanam, tanpa server basis data</li>
+        </ul>
+      </div>
+      <div class="arrow">petakan<br>laporkan</div>
+      <div class="node">
+        <p class="tag">ruang operator</p>
+        <h3>Dashboard dan alert</h3>
+        <ul>
+          <li>Halaman statis, tanpa build step</li>
+          <li>Feed langsung lewat WebSocket</li>
+          <li>Detail incident, timeline, evidence</li>
+          <li>Telegram dan webhook</li>
+        </ul>
+      </div>
+    </div>
+    <p class="lead muted" style="margin-top:18px;font-size:15px">
+      Satu collector cukup untuk satu satuan. Menambah node hanya menambah agen, tanpa
+      mengubah arsitektur.
+    </p>
+  </div>
+</section>
+
+<!-- ==================================================== 7 engine -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Engine deteksi</span><span class="no">07</span>
+  </header>
+  <div class="s-body">
+    <h2>Empat langkah, semuanya bisa diperiksa ulang</h2>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="box">
+        <h3>Penyaringan aktivitas jinak</h3>
+        <p>Health check internal dan pola probe yang sudah dikenal disisihkan ke jalur
+        terpisah. Event-nya tetap tersimpan dan tetap bisa dilihat, tetapi tidak menjadi
+        incident. Pada demo, 2 event masuk ke jalur ini dan angkanya muncul di dashboard
+        sebagai baris Disaring.</p>
+        <h3 style="margin-top:16px">Atribusi tool</h3>
+        <p>Ciri pola koneksi dipakai untuk menebak alat penyerang. Pada demo, nmap dikenali
+        dengan keyakinan 86 persen, dengan masscan dibedakan lewat laju koneksi.</p>
+      </div>
+      <div class="box">
+        <h3>Korelasi dan penilaian</h3>
+        <p>Event dari satu sumber digabung menjadi satu incident. Skornya dibentuk dari jenis
+        bukti yang terkumpul: kredensial umpan yang terbukti dipakai, akses berkas honeytoken,
+        credential brute force, probe protokol OT, pemindaian port, dan pemeriksaan web.</p>
+        <h3 style="margin-top:16px">Pemetaan ATT&amp;CK dan ringkasan</h3>
+        <p>Setiap incident dipetakan ke teknik ATT&amp;CK, termasuk ATT&amp;CK for ICS, lalu
+        diberi ringkasan yang disusun dari data yang tercatat. Ringkasan saat ini
+        deterministik: templat yang diisi fakta, bukan model bahasa.</p>
+      </div>
+    </div>
+    <div class="readout">
+      <div><b>234</b><span>event mentah masuk</span></div>
+      <div><b>2</b><span>event disaring ke jalur terpisah</span></div>
+      <div><b>1</b><span>incident hasil korelasi</span></div>
+      <div><b>86%</b><span>keyakinan atribusi nmap</span></div>
+      <div class="good"><b>0</b><span>false positive</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 8 bukti -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Bukti</span><span class="no">08</span>
+  </header>
+  <div class="s-body">
+    <h2>234 event mentah menjadi satu incident, dari serangan sungguhan</h2>
+    <div class="arch" style="grid-template-columns:1fr 300px;gap:1px;background:var(--seam);border:1px solid var(--seam);margin-top:16px">
+      <div style="background:var(--bg);min-width:0;display:flex;flex-direction:column">
+        <div class="shot crop">
+          <img src="../site/assets/dashboard-desktop.png" alt="Dashboard POLARIS setelah demo, memperlihatkan log umpan dan satu incident CRITICAL bernilai 410.">
+        </div>
+        <p class="muted" style="font-size:12.5px;padding:9px 14px;margin-top:auto">
+          Log umpan di kiri masih mentah dan berurutan. Incident di tengah adalah hasil
+          korelasi. Catatan: URL di log dirender sebagai teks, bukan tautan yang bisa diklik.
+        </p>
+      </div>
+      <div style="background:var(--panel);min-width:0;display:flex;flex-direction:column">
+        <dl class="spec" style="border-top:0">
+          <dt>Severity</dt><dd class="hi">CRITICAL</dd>
+          <dt>Skor</dt><dd class="hi">410</dd>
+          <dt>Event ter-korelasi</dt><dd>234</dd>
+          <dt>Tool terduga</dt><dd>nmap 86%</dd>
+          <dt>Jenis umpan tersentuh</dt><dd>10</dd>
+          <dt>Teknik ATT&amp;CK</dt><dd>12</dd>
+          <dt>False positive</dt><dd class="good">0</dd>
+        </dl>
+        <p style="font-size:12.5px;line-height:1.55;color:#c6d0dc;padding:13px 16px">
+          Ciri pola mengarah ke nmap dengan keyakinan 86 persen. Probing protokol OT atau ICS
+          terdeteksi pada decoy Modbus dan HMI, dan kredensial canary terbukti dipakai.
+        </p>
+      </div>
+    </div>
+    <div class="foot">
+      <span class="chip hot">nol false positive</span>
+      <span class="chip">dinilai deterministik dari bukti sentuhan</span>
+      <span class="sig">demo nyata, 25 Oktober 2026, satu host</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 9 MITRE -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Pemetaan dan atribusi</span><span class="no">09</span>
+  </header>
+  <div class="s-body">
+    <h2>Bukan daftar label, tetapi peta yang dibaca per taktik</h2>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="box">
+        <h3>12 teknik dari satu insiden</h3>
+        <dl class="mitre-grid">
+          <dt>Reconnaissance</dt><dd>T1595</dd>
+          <dt>Discovery</dt><dd>T1046, T1083</dd>
+          <dt>Initial Access</dt><dd>T1190</dd>
+          <dt>Lateral Movement</dt><dd>T1021.004</dd>
+          <dt>Credential Access</dt><dd>T1110, T1552</dd>
+          <dt>Defense Evasion</dt><dd>T1078</dd>
+          <dt>ICS Discovery</dt><dd>T0846</dd>
+          <dt>ICS Credential Access</dt><dd>T0812</dd>
+          <dt>ICS Impact</dt><dd>T0835, T0836</dd>
+        </dl>
+        <p style="margin-top:12px">Mencakup rantai lengkap, dari pengintaian sampai upaya
+        memanipulasi proses industri.</p>
+      </div>
+      <div class="box">
+        <h3>Dasar atribusi tool, bukan tebakan nama</h3>
+        <table class="mono" style="margin-top:8px">
+          <thead><tr><th scope="col">Tool</th><th scope="col">Ciri yang menjadi dasar</th></tr></thead>
+          <tbody>
+            <tr><td>nmap</td><td>Koneksi bertahap per port, jeda tidak rata, ada pemeriksaan versi layanan</td></tr>
+            <tr><td>masscan</td><td>Laju sangat tinggi, banyak port pada satu rentang waktu</td></tr>
+            <tr><td>hydra</td><td>Percobaan login berulang pada port yang sama</td></tr>
+            <tr><td>curl atau wget</td><td>Satu permintaan HTTP dengan satu user agent tetap</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="foot">
+      <span class="chip">ATT&amp;CK Enterprise</span>
+      <span class="chip">ATT&amp;CK for ICS</span>
+      <span class="chip">evidence disimpan per event</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 10 demo -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Alur demo</span><span class="no">10</span>
+  </header>
+  <div class="s-body">
+    <h2>Yang diperlihatkan video demo, dengan alat penyerang sungguhan</h2>
+    <table style="margin-top:14px">
+      <caption>Satu berkas skrip menjalankan seluruh urutan ini: <code>demo/demo.sh</code></caption>
+      <thead><tr><th scope="col">Langkah</th><th scope="col">Alat</th><th scope="col">Yang muncul di POLARIS</th></tr></thead>
+      <tbody>
+        <tr><td>0. Bersihkan keadaan</td><td>tidak ada</td><td>Dashboard kosong, nol alert, satu pesan keadaan kosong</td></tr>
+        <tr><td>1. Pengintaian layanan</td><td>nmap</td><td>Koneksi berurutan ke port umpan, T1046</td></tr>
+        <tr><td>2. Penyapuan cepat</td><td>masscan</td><td>Lonjakan koneksi dari banyak port, pola berbeda dari nmap</td></tr>
+        <tr><td>3. Pemeriksaan web</td><td>nikto</td><td>Akses ke path admin dan path sensitif, T1595</td></tr>
+        <tr><td>4. Credential spray</td><td>hydra</td><td>Percobaan login berulang ke decoy SSH, T1110</td></tr>
+        <tr><td>5. Kredensial canary dipakai</td><td>skrip</td><td>Beacon masuk lewat URL canary, T1552</td></tr>
+        <tr><td>6. Berkas honeytoken dibaca</td><td>skrip</td><td>Event akses berkas, T1083</td></tr>
+        <tr><td>7. Probe OT atau ICS</td><td>Modbus FC03</td><td>Decoy Modbus dan HMI tersentuh, T0846 dan T0836</td></tr>
+        <tr><td>8. Hasil</td><td>tidak ada</td><td>Satu incident kritis, 234 event, nol false positive</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================================================== 11 implementasi -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Kemudahan implementasi</span><span class="no">11</span>
+  </header>
+  <div class="s-body">
+    <h2>Satu baris untuk memasang agen</h2>
+    <div class="cols c3" style="margin-top:16px">
+      <div class="box">
+        <h3>Pasang</h3>
+        <p style="margin-bottom:9px">Satu perintah memasang agen di node satuan.</p>
+        <p><code style="font-size:12.5px">bash installer/install.sh</code></p>
+        <p style="margin-top:10px">Untuk jaringan tertutup, ada mode pemasangan dari binary
+        lokal yang sudah tersedia.</p>
+      </div>
+      <div class="box">
+        <h3>Jalankan</h3>
+        <p style="margin-bottom:9px">Collector dan dashboard berjalan di satu host, tanpa
+        server basis data terpisah.</p>
+        <p><code style="font-size:12.5px">bash scripts/dev-up.sh</code></p>
+        <p style="margin-top:10px">SQLite tertanam. Nol container, nol orkestrasi, nol cloud.</p>
+      </div>
+      <div class="box">
+        <h3>Perluas</h3>
+        <p style="margin-bottom:9px">Menambah node berarti mengulang langkah pemasangan di
+        host berikutnya.</p>
+        <p><code style="font-size:12.5px">POLARIS_CORE_URL=http://kolektor:8787</code></p>
+        <p style="margin-top:10px">Arsitektur tidak berubah dari satu node ke banyak node.</p>
+      </div>
+    </div>
+    <div class="quote">
+      Agen berjalan sebagai satu binary Go tanpa dependensi eksternal. Bila collector sedang
+      tidak bisa dihubungi, agen menyimpan event ke spool lokal lalu mengirimnya kembali.
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 12 kriteria -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Kesesuaian penilaian</span><span class="no">12</span>
+  </header>
+  <div class="s-body">
+    <h2>Posisi pada tiap kriteria, dengan bukti yang bisa diperiksa</h2>
+    <table style="margin-top:14px">
+      <thead><tr><th scope="col">Bobot</th><th scope="col">Kriteria</th><th scope="col">Yang sudah ada di purwarupa</th></tr></thead>
+      <tbody>
+        <tr><td>25%</td><td>Relevansi dan manfaat</td>
+          <td>Decoy OT dan ICS, jalan tanpa internet, mengurangi beban analis karena alert
+          hanya lahir dari bukti sentuhan</td></tr>
+        <tr><td>25%</td><td>Inovasi teknis</td>
+          <td>Paradigma dibalik dari anomali ke tipuan, atribusi tool, korelasi, pemetaan
+          ATT&amp;CK termasuk ICS</td></tr>
+        <tr><td>25%</td><td>Fungsionalitas purwarupa</td>
+          <td>Berjalan di mesin ini, diuji dengan nmap, masscan, nikto, dan hydra, menghasilkan
+          satu incident kritis</td></tr>
+        <tr><td>15%</td><td>Kelayakan implementasi</td>
+          <td>Satu binary tanpa dependensi, SQLite tertanam, pemasangan satu baris, nol cloud</td></tr>
+        <tr><td>10%</td><td>Kualitas dokumentasi</td>
+          <td>Proposal, dokumen teknis, arah desain beserta alasannya, skrip demo, dan tabel
+          pemetaan ATT&amp;CK</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">
+      <span class="chip">25% relevansi</span>
+      <span class="chip">25% inovasi</span>
+      <span class="chip hot">25% fungsionalitas, sudah dibuktikan berjalan</span>
+      <span class="chip">15% kelayakan</span>
+      <span class="chip">10% dokumentasi</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 13 batas -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Batas dan langkah berikutnya</span><span class="no">13</span>
+  </header>
+  <div class="s-body">
+    <h2>Yang belum kami kerjakan, ditulis terbuka</h2>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="box">
+        <h3>Batas purwarupa saat ini</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.6;display:grid;gap:7px">
+          <li>Demo berjalan di satu host, penyerang dan sensor di mesin yang sama, jadi sumber
+          tercatat sebagai 127.0.0.1</li>
+          <li>Pembacaan berkas umpan tidak bisa dipisahkan per proses, karena inotify melaporkan
+          berkas yang dibaca, bukan proses yang membacanya</li>
+          <li>Atribusi tool adalah perkiraan dari ciri pola, dan alat buatan sendiri bisa
+          menyamarkan pola itu</li>
+          <li>Umpan OT atau ICS bersifat tiruan, yang dideteksi adalah pola probe</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Langkah berikutnya, berurutan</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.6;display:grid;gap:7px">
+          <li>Uji lapangan dengan agen di beberapa host pada segmen terpisah, untuk membuktikan
+          atribusi sumber per node</li>
+          <li>Ringkasan berbantuan model bahasa, dengan batas jelas: model meringkas, manusia
+          yang memutuskan</li>
+          <li>Perluasan sensor OT ke S7 dan DNP3, lalu pengujian dengan perangkat uji industri
+          sungguhan</li>
+          <li>Pindah penyimpanan ke PostgreSQL saat volume event satuan sudah terukur</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">
+      Setiap angka di slide ini berasal dari satu eksekusi demo pada 25 Oktober 2026. Tidak ada
+      statistik, ulasan, atau logo pihak ketiga yang dipakai.
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== 14 penutup -->
+<section class="slide">
+  <header class="s-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="word">POLARIS</span><span class="sec">Penutup</span><span class="no">14</span>
+  </header>
+  <div class="s-body">
+    <h2 style="font-size:34px;max-width:24ch">Deteksi kami bukan tebakan. Interaksi dengan
+    umpan adalah bukti.</h2>
+    <p class="lead" style="margin-top:20px">
+      Firewall menahan yang terlihat. POLARIS menangkap yang menyembunyikan diri, pada jaringan
+      IT maupun OT, tanpa cloud, dengan satu binary agen dan pemasangan satu baris.
+    </p>
+    <div class="cols c3" style="margin-top:26px">
+      <div class="box"><h3>Deterministik</h3>
+        <p>Tidak ada ambang batas untuk dituning. Umpan tidak pernah tersentuh operasi normal.</p></div>
+      <div class="box"><h3>Bukti, bukan klaim</h3>
+        <p>Setiap alert membawa waktu, sumber, payload, dan sidik jari berkas yang bisa diperiksa.</p></div>
+      <div class="box"><h3>Siap jaringan tertutup</h3>
+        <p>Nol dependensi cloud. Berjalan di segmen yang tidak terhubung ke internet.</p></div>
+    </div>
+    <div class="foot">
+      <span class="chip">Kartika Cyber Hackathon 2026</span>
+      <span class="chip">Kategori 02 Defensive Shield</span>
+      <span class="chip">PUSSIBERAD bersama Codepolitan</span>
+      <span class="sig">sumber dan dokumen: github.com/arill2/kartika-cyber-hackathon</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

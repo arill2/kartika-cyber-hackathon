@@ -8,6 +8,8 @@ credentials.*
 
 # --- Go ---
 agent/polaris-agent
+bin/*
+!bin/.gitkeep
 *.exe
 vendor/
 *.test

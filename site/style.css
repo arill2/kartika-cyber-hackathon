@@ -1,0 +1,268 @@
+/* POLARIS landing page
+   Direction dan alasan: DESIGN.md. Filter: antislop (R-02 tanpa em dash,
+   R-25 kontras dihitung dengan scripts/contrast-check.py, R-27 tiap keadaan,
+   R-32 fokus terlihat, R-15 tombol spesifik).
+   Tata bahasa visual dipinjam dari referensi yang sama dengan dashboard:
+   seam antar blok, nameplate, angka dulu lalu label. */
+
+:root{
+  --bg:#0e1116;
+  --panel:#161a20;
+  --panel-2:#1c2128;
+  --panel-3:#20262e;
+  --seam:#2b323c;
+  --line-strong:#647082;   /* batas kontrol interaktif: 3.48:1 */
+  --text:#e9edf2;
+  --muted:#9aa5b1;
+  --accent:#5eead4;        /* hanya untuk interaksi dan tanda langsung */
+  --sev-critical:#ff6b6b;
+  --sev-high:#ff9f43;
+  --sev-low:#6ddb8f;
+
+  --r-1:3px; --r-2:6px; --r-3:10px;
+
+  --f-ui:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-data:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+  --wrap:1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.62 var(--f-ui);
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{margin:0;font-weight:650;line-height:1.22}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--accent); outline-offset:2px; border-radius:var(--r-1);
+}
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#0e1116;padding:10px 14px;z-index:99;font-weight:650}
+.skip:focus{left:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+code{font-family:var(--f-data);font-size:.92em;color:#a8d8ea}
+
+/* ---------------------------------------------------------------- nameplate */
+.topbar{
+  display:flex;align-items:center;gap:0;flex-wrap:wrap;
+  background:var(--panel);border-bottom:1px solid var(--seam);
+  position:sticky;top:0;z-index:20
+}
+.brand{display:flex;align-items:center;gap:12px;padding:13px 22px;border-right:1px solid var(--seam)}
+.mark{width:26px;height:26px;color:var(--accent);flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.2}
+.name{font-weight:750;letter-spacing:.22em;font-size:15px}
+.tagline{font-size:11.5px;color:var(--muted)}
+
+.sitenav{display:flex;flex-wrap:wrap;flex:1}
+.sitenav a{
+  color:var(--muted);text-decoration:none;font-size:13px;
+  padding:17px 15px;border-right:1px solid var(--seam)
+}
+.sitenav a:hover{color:var(--text);background:var(--panel-3)}
+
+.repo-link{margin:0;padding:0 22px;font-size:13px;border-left:1px solid var(--seam);align-self:stretch;display:flex;align-items:center}
+.repo-link a{text-decoration:none;font-weight:650}
+.repo-link a:hover{text-decoration:underline}
+
+/* ---------------------------------------------------------------- hero */
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:0;
+  border-bottom:1px solid var(--seam)
+}
+.hero-copy{padding:56px 40px 48px 40px;max-width:760px}
+.eyebrow{
+  font-family:var(--f-data);font-size:11.5px;color:var(--muted);
+  letter-spacing:.06em;margin-bottom:16px
+}
+.hero h1{font-size:clamp(29px,3.5vw,44px);letter-spacing:-.015em}
+.lede{margin-top:20px;font-size:17px;color:#cdd6e1;max-width:62ch}
+.cta-row{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.cta,.cta-ghost{
+  display:inline-block;padding:13px 22px;border-radius:var(--r-2);
+  font-size:14.5px;font-weight:650;text-decoration:none;min-height:46px
+}
+.cta{background:var(--accent);color:#0b1512}
+.cta:hover{background:#7ff0dc}
+.cta-ghost{border:1px solid var(--line-strong);color:var(--text)}
+.cta-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+.readouts{
+  margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--seam);flex:1;min-height:0
+}
+.hero-stats{
+  display:flex;flex-direction:column;
+  border-left:1px solid var(--seam);background:var(--panel);min-width:0
+}
+.readout{
+  background:var(--panel);display:flex;flex-direction:column-reverse;
+  justify-content:center;gap:2px;padding:22px 24px
+}
+.readout dd{margin:0;font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.readout dt{font-size:11.5px;color:var(--muted)}
+.readout.ok dd{color:var(--sev-low)}
+.readout-note{
+  background:var(--panel-2);color:var(--muted);
+  font-size:12.5px;padding:13px 24px;margin:0;border-top:1px solid var(--seam)
+}
+
+/* ---------------------------------------------------------------- bands */
+.band{
+  padding:56px 40px;border-bottom:1px solid var(--seam);
+  max-width:var(--wrap);margin:0 auto
+}
+.band.alt{
+  background:var(--panel);max-width:none;
+  padding-left:max(40px, calc((100% - var(--wrap)) / 2));
+  padding-right:max(40px, calc((100% - var(--wrap)) / 2))
+}
+.band h2{font-size:clamp(21px,2.4vw,27px);letter-spacing:-.01em;margin-bottom:8px}
+.band .wide{max-width:74ch;color:#c6d0dc;margin-bottom:30px}
+.muted{color:var(--muted);font-size:13.5px}
+
+/* ---------------------------------------------------------------- findings */
+.findings{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:1px;background:var(--seam);border:1px solid var(--seam)}
+.findings li{background:var(--bg);display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 24px}
+.findings .num{font-family:var(--f-data);font-size:22px;font-weight:700;color:var(--line-strong)}
+.findings h3{font-size:16.5px;margin-bottom:6px}
+.findings p{color:var(--muted);font-size:14.5px;max-width:70ch}
+
+/* ---------------------------------------------------------------- compare table */
+.compare{width:100%;border-collapse:collapse;font-size:14.5px}
+.compare caption{text-align:left;color:var(--muted);font-size:12px;padding-bottom:10px}
+.compare th,.compare td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--seam);vertical-align:top}
+.compare thead th{font-size:11.5px;color:var(--muted);font-weight:650}
+.compare tbody tr td:last-child{color:var(--text);border-left:1px solid var(--seam);background:var(--panel-2)}
+.compare tbody tr td:first-child{color:var(--muted)}
+
+/* ---------------------------------------------------------------- tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--seam);border:1px solid var(--seam);margin-top:8px}
+.tile{background:var(--bg);padding:22px 24px;min-width:0}
+.band.alt .tile{background:var(--panel-2)}
+.tile h3{font-size:15.5px;margin-bottom:8px}
+
+/* daftar port butuh lebar penuh supaya chip tersusun rapi, sisanya tiga kolom */
+.tiles.wide-first{grid-template-columns:repeat(3,1fr)}
+.tiles.wide-first .tile:first-child{grid-column:1 / -1}
+
+.ports{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.ports li{
+  font-family:var(--f-data);font-size:12px;color:#cfd8e3;
+  background:#1b2129;border:1px solid var(--seam);border-radius:var(--r-1);padding:3px 8px
+}
+.ports li span{color:var(--muted)}
+
+.files{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:1px;background:var(--seam);border-top:1px solid var(--seam)}
+.files li{background:var(--bg);padding:7px 4px}
+.band.alt .files li{background:var(--panel-2)}
+
+/* ---------------------------------------------------------------- pipeline */
+.pipeline{list-style:none;counter-reset:step;padding:0;margin:0;border-left:2px solid var(--line-strong);margin-left:6px}
+.pipeline li{counter-increment:step;position:relative;padding:0 0 26px 30px}
+.pipeline li::before{
+  content:"";position:absolute;left:-8px;top:9px;width:14px;height:14px;
+  border-radius:50%;background:var(--bg);border:2px solid var(--accent)
+}
+.band.alt .pipeline li::before{background:var(--panel)}
+.pipeline h3{font-family:var(--f-data);font-size:13px;letter-spacing:.04em;color:var(--accent);margin-bottom:6px}
+.pipeline p{color:var(--muted);font-size:14.5px;max-width:72ch}
+.pipeline li:last-child{padding-bottom:0}
+
+/* ---------------------------------------------------------------- evidence */
+.shot{margin:0 0 34px}
+.shot img{border:1px solid var(--line-strong);border-radius:var(--r-2)}
+.shot figcaption{color:var(--muted);font-size:13px;margin-top:12px;max-width:80ch}
+.shot figcaption strong{color:var(--text);font-weight:650}
+
+.verdict{border:1px solid var(--seam);border-left:3px solid var(--accent);border-radius:var(--r-2);background:var(--panel);padding:0;margin-bottom:34px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.verdict h3{font-size:12px;color:var(--muted);letter-spacing:.06em;padding:18px 24px 0;grid-column:1/-1}
+.quote{margin:0;padding:12px 24px 24px;font-size:15px;line-height:1.75;color:#dbe3ec}
+.spec{display:grid;grid-template-columns:1fr auto;margin:0;border-left:1px solid var(--seam)}
+.spec dt{padding:11px 20px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--seam);align-self:end}
+.spec dd{margin:0;padding:11px 20px;font-family:var(--f-data);font-size:13px;text-align:right;border-bottom:1px solid var(--seam);border-left:1px solid var(--seam)}
+.spec dd.hi{color:var(--sev-critical);font-weight:700}
+
+.mitre{display:grid;grid-template-columns:1fr auto;margin:16px 0 0;gap:0;border-top:1px solid var(--seam)}
+.mitre dt{padding:6px 0;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--seam)}
+.mitre dd{margin:0;padding:6px 0 6px 14px;font-family:var(--f-data);font-size:12px;color:#cfd8e3;text-align:right;border-bottom:1px solid var(--seam)}
+
+.mini{width:100%;border-collapse:collapse;font-size:13px;margin-top:16px}
+.mini th,.mini td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--seam);vertical-align:top}
+.mini th{font-size:11px;color:var(--muted);font-weight:650}
+.mini td:first-child{font-family:var(--f-data);color:#cfd8e3;white-space:nowrap}
+.mini td:last-child{color:var(--muted)}
+
+/* ---------------------------------------------------------------- code tiles */
+.code pre{
+  margin:14px 0 12px;background:#0b0e12;border:1px solid var(--seam);
+  border-radius:var(--r-2);padding:13px 14px;overflow-x:auto;font-size:12.5px
+}
+.code pre code{color:#b8e6d9;white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* ---------------------------------------------------------------- limits */
+.limits{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--seam);border:1px solid var(--seam)}
+.limits li{background:var(--bg);padding:18px 22px;font-size:14.5px;color:var(--muted);max-width:none}
+.limits strong{color:var(--text);font-weight:650}
+
+/* ---------------------------------------------------------------- footer */
+.footer{
+  background:var(--panel);border-top:1px solid var(--seam);
+  padding:40px max(40px, calc((100% - var(--wrap)) / 2))
+}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px}
+.footer h2{font-size:11.5px;color:var(--muted);letter-spacing:.08em;margin-bottom:10px}
+.footer p{font-size:13.5px;color:#c6d0dc;max-width:38ch}
+.footer ul{list-style:none;padding:0;margin:0;display:grid;gap:7px;font-size:13.5px}
+.footer a{text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.foot-note{
+  border-top:1px solid var(--seam);padding-top:20px;margin:32px 0 0;
+  color:var(--muted);font-size:12.5px;max-width:92ch
+}
+
+/* ---------------------------------------------------------------- small screens */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:38px 22px 30px}
+  .hero-stats{border-left:0;border-top:1px solid var(--seam)}
+  .band{padding:40px 22px}
+  .band.alt{padding-left:22px;padding-right:22px}
+
+  /* kepala halaman jadi tiga baris rata di layar sempit, dan berhenti menempel
+     supaya tidak memakan tinggi layar ponsel */
+  .topbar{position:static;flex-direction:column;align-items:stretch}
+  .brand{border-right:0;border-bottom:1px solid var(--seam)}
+  .sitenav{order:2;width:100%}
+  .sitenav a{flex:1 1 24%;text-align:center;padding:12px 6px;border-right:1px solid var(--seam);border-bottom:1px solid var(--seam)}
+  .repo-link{order:3;width:100%;padding:12px 16px;justify-content:center;border-left:0;border-top:1px solid var(--seam)}
+
+  .verdict{grid-template-columns:1fr}
+  .spec{border-left:0;border-top:1px solid var(--seam)}
+  .findings li{grid-template-columns:44px 1fr;gap:14px;padding:18px}
+  .footer{padding:32px 22px}
+}
+@media (max-width:1000px){
+  .tiles.wide-first{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:700px){
+  .tiles.wide-first{grid-template-columns:1fr}
+}@media (max-width:520px){
+  .readout{padding:16px}
+  .readout dd{font-size:25px}
+  .brand,.repo-link{padding-left:16px;padding-right:16px}
+}
+
+/* Konsol dan halaman ini gelap karena alasan operasional: ruang SOC bekerja
+   dengan lampu rendah selama shift panjang, dan halaman harus sewarna dengan
+   perangkat yang dibaca di sana. Ini pilihan branding, bukan default. */
+::selection{background:var(--accent);color:#0b1512}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important;animation:none !important}
+}

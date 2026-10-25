@@ -1,6 +1,6 @@
-# 03 — Taksonomi Umpan (Decoy & Honeytoken)
+# 03: Taksonomi Umpan (Decoy & Honeytoken)
 
-Ini "amunisi" POLARIS. Setiap umpan punya **tier kepercayaan** — makin tinggi
+Ini "amunisi" POLARIS. Setiap umpan punya **tier kepercayaan**, makin tinggi
 tier, makin mustahil disentuh user sah, makin tinggi severity.
 
 ## Tabel Tier & Confidence

@@ -1,12 +1,12 @@
-# 11 — Submission Checklist (Kartika Cyber Hackathon 2026)
+# 11: Submission Checklist (Kartika Cyber Hackathon 2026)
 
 ## Deadline
-**15 November 2026** — Batas akhir submission.
+**15 November 2026**, Batas akhir submission.
 Finalis diumumkan **20 Nov**, final **24 Nov 2026** di Hotel Aston Kartika, Jakarta.
 
 ---
 
-## Yang Wajib Disubmit (Babak 1 — Penyisihan Online)
+## Yang Wajib Disubmit (Babak 1: Penyisihan Online)
 
 Berdasarkan halaman resmi hackathon, submission berisi:
 
@@ -18,7 +18,7 @@ Berdasarkan halaman resmi hackathon, submission berisi:
 - [ ] **Slide penjelasan project**
 
 > ⚠️ **Catatan penting:** repo ini di-set **private**. Saat submit, pastikan juri
-> bisa mengakses — pilih salah satu:
+> bisa mengakses: pilih salah satu:
 > - Jadikan **public** sebelum submit, ATAU
 > - **Invite** akun juri/panitia ke repo sebagai collaborator, ATAU
 > - Siapkan **zip** artefak yang di-upload ke platform submit.

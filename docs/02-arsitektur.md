@@ -1,4 +1,4 @@
-# 02 — Arsitektur Teknis
+# 02: Arsitektur Teknis
 
 ## 1. Diagram Tingkat Tinggi
 
@@ -71,9 +71,9 @@
 - **Bentuk:** FastAPI service.
 - **Tugas:** validasi & ingest event, simpan ke SQLite, teruskan ke engine.
 - **Endpoint utama:**
-  - `POST /ingest` — terima event dari agent.
-  - `GET  /beacon/{token}` — honeytoken URL callback.
-  - `WS   /live` — stream event/incident ke dashboard.
+  - `POST /ingest`: terima event dari agent.
+  - `GET  /beacon/{token}`: honeytoken URL callback.
+  - `WS   /live`: stream event/incident ke dashboard.
 
 ### 2.3 Detection Engine
 - Fingerprinting tool penyerang.
@@ -93,7 +93,8 @@ Detail: `04-engine-deteksi.md`.
 ### 2.5 Alert Channels
 - Telegram Bot (instan, demo-able).
 - Generic webhook (integrasi SOC/SOAR).
-- Discord (opsional).
+- Kanal lain seperti Discord atau Slack tidak dibuat sebagai modul terpisah;
+  keduanya dijangkau lewat webhook generik yang sama.
 
 ## 3. Alur Data
 
@@ -110,14 +111,14 @@ Detail: `04-engine-deteksi.md`.
 
 ## 4. Model Deployment
 
-### 4.1 Model A — Standalone (demo)
+### 4.1 Model A: Standalone (demo)
 Agent + Collector + Dashboard di satu mesin. Cocok untuk demo hackathon & satuan kecil.
 
-### 4.2 Model B — Distributed (produksi)
+### 4.2 Model B: Distributed (produksi)
 Banyak Agent di banyak node → 1 Collector/Engine pusat → Dashboard SOC.
 Cocok untuk jaringan satuan dengan banyak server.
 
-### 4.3 Model C — Air-gapped
+### 4.3 Model C: Air-gapped
 Semua komponen on-prem tanpa internet. Alert via webhook ke SOAR internal
 atau dashboard lokal. **Ini pembeda utama untuk TNI AD.**
 

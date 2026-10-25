@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POLARIS · Deception Early Warning (IT/OT)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Lompat ke konten utama</a>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path d="M16 3.2 27.2 9.6v12.8L16 28.8 4.8 22.4V9.6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="16" cy="16" r="2.8" fill="currentColor"/>
+    </svg>
+    <div class="brand-text">
+      <span class="name">POLARIS</span>
+      <span class="tagline">Deception early warning untuk jaringan IT dan OT</span>
+    </div>
+  </div>
+
+  <dl class="readouts" aria-label="Ringkasan sistem">
+    <div class="readout"><dt>Event umpan</dt><dd id="stat-events">0</dd></div>
+    <div class="readout"><dt>Incident</dt><dd id="stat-incidents">0</dd></div>
+    <div class="readout"><dt>Penyerang</dt><dd id="stat-attackers">0</dd></div>
+    <div class="readout ok"><dt>False positive</dt><dd id="stat-fp">0</dd></div>
+    <div class="readout" title="Aktivitas jinak yang dikenali (health check internal), tetap tersimpan untuk audit">
+      <dt>Disaring</dt><dd id="stat-suppressed">0</dd></div>
+  </dl>
+
+  <p class="conn" id="conn" data-state="connecting">
+    <span class="dot" aria-hidden="true"></span><span id="conn-text">menghubungkan</span>
+  </p>
+</header>
+
+<p class="banner" id="banner" role="alert" hidden></p>
+
+<main class="grid" id="main">
+  <section class="panel" aria-labelledby="h-feed">
+    <div class="panel-head">
+      <h2 id="h-feed">Umpan tersentuh (live)</h2>
+      <span class="count"><span id="ev-count">0</span></span>
+    </div>
+    <ol class="feed" id="feed">
+      <li class="state" id="feed-state">Menunggu interaksi pertama dengan umpan…</li>
+    </ol>
+  </section>
+
+  <section class="panel" aria-labelledby="h-incidents">
+    <div class="panel-head">
+      <h2 id="h-incidents">Incident ter-korelasi</h2>
+      <span class="count"><span id="inc-count">0</span></span>
+    </div>
+    <div class="incidents" id="incidents">
+      <p class="state" id="inc-state">Belum ada incident. Sistem bersih, nol alert.</p>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-attackers">
+    <div class="panel-head">
+      <h2 id="h-attackers">Profil penyerang</h2>
+      <span class="count"><span id="atk-count">0</span></span>
+    </div>
+    <ul class="attackers" id="attackers">
+      <li class="state">Belum ada penyerang terdeteksi.</li>
+    </ul>
+    <div class="decoys">
+      <h3>Umpan aktif di node ini</h3>
+      <ul class="decoys-list">
+        <li>fake-ssh :2222</li><li>fake-mysql :3306</li><li>fake-redis :6379</li>
+        <li>fake-rdp :3389</li><li>fake-smb :445</li><li>fake-hmi :8080</li>
+        <li>decoy-modbus :502</li><li>web /.env</li><li>honeytoken file</li>
+        <li>honeytoken URL</li><li>canary credential</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="m-title" id="m-box">
+    <button class="close" id="modal-close" type="button">Tutup</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<p class="sr-only" id="live-region" role="status" aria-live="polite"></p>
+
+<script src="app.js"></script>
+</body>
+</html>

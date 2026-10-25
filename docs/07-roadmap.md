@@ -1,4 +1,4 @@
-# 07 — Roadmap & Backlog (sampai 15 Nov 2026)
+# 07: Roadmap & Backlog (sampai 15 Nov 2026)
 
 Asumsi: solo, ~3 minggu efektif. Deadline submit **15 November 2026**.
 
@@ -15,17 +15,17 @@ Asumsi: solo, ~3 minggu efektif. Deadline submit **15 November 2026**.
 
 ---
 
-## W0 — Fondasi (24–27 Okt)
+## W0: Fondasi (24–27 Okt)
 
 - [ ] Register tim/individu di Codepolitan (kategori Defensive Shield, isi ide)
-- [ ] **Ikut Webinar Pembekalan 2 (27 Okt)** — catat insight TNI AD/mentor
+- [ ] **Ikut Webinar Pembekalan 2 (27 Okt)**: catat insight TNI AD/mentor
 - [ ] Sesuaikan framing berdasarkan webinar
 - [ ] Kunci nama final + stack
 - [ ] Setup repo + environment (Go, Python)
 
 ---
 
-## W1 — MVP End-to-End (28 Okt–3 Nov)
+## W1: MVP End-to-End (28 Okt–3 Nov)
 
 **Goal: colok umpan → alert Telegram bunyi.**
 
@@ -44,7 +44,7 @@ Asumsi: solo, ~3 minggu efektif. Deadline submit **15 November 2026**.
 
 ---
 
-## W2 — Otak Deteksi (4–10 Nov)
+## W2: Otak Deteksi (4–10 Nov)
 
 - [ ] **Multi decoy port** (SSH, MySQL, Redis) + banner palsu
 - [ ] **Web decoy paths** (`/.env`, `/.git/config`, `/wp-admin`, ...)
@@ -59,7 +59,7 @@ Asumsi: solo, ~3 minggu efektif. Deadline submit **15 November 2026**.
 
 ---
 
-## W3 — Polish & Submit (11–15 Nov)
+## W3: Polish & Submit (11–15 Nov)
 
 - [ ] **1-line installer** (`curl -fsSL .../install.sh | bash`)
 - [ ] **AI summarizer** (opsional, bila waktu cukup)
@@ -96,7 +96,7 @@ Asumsi: solo, ~3 minggu efektif. Deadline submit **15 November 2026**.
 
 ## Catatan Strategi
 
-- **Jangan remehkan dokumentasi (10%)** — proposal, tech doc, video, slide wajib rapi.
-- **Video demo = syarat submit** — jangan dikerjakan di menit terakhir.
+- **Jangan remehkan dokumentasi (10%)**: proposal, tech doc, video, slide wajib rapi.
+- **Video demo = syarat submit**: jangan dikerjakan di menit terakhir.
 - Kalau W2 selesai lebih cepat, pakai sisa waktu untuk memperdalam **OT/ICS** dan
   **forensics evidence** (bidang juri Lettu Aghni).

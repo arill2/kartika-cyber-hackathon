@@ -1,0 +1,2 @@
+Binary hasil build diletakkan di sini (dibuat oleh `cd agent && go build -o ../bin/polaris-agent .`).
+Isi direktori ini tidak masuk git; hanya berkas penanda ini yang disimpan.

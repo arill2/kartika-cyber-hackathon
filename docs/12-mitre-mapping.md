@@ -1,4 +1,4 @@
-# 12 — Pemetaan MITRE ATT&CK
+# 12: Pemetaan MITRE ATT&CK
 
 Peta teknik yang dicakup POLARIS. Enterprise untuk IT, ICS untuk OT.
 
@@ -30,13 +30,13 @@ Peta teknik yang dicakup POLARIS. Enterprise untuk IT, ICS untuk OT.
 
 ## Taktik yang Dicakup (Ringkas)
 
-- **Reconnaissance** — T1595
-- **Initial Access** — T1078, T1190
-- **Discovery** — T1046, T1083, T0846, T0842
-- **Credential Access** — T1110, T1552
-- **Lateral Movement** — T1021.001, T1021.002, T0812, T0859
-- **Command and Control** — T1071
-- **Impact (OT)** — T0831, T0836
+- **Reconnaissance**: T1595
+- **Initial Access**: T1078, T1190
+- **Discovery**: T1046, T1083, T0846, T0842
+- **Credential Access**: T1110, T1552
+- **Lateral Movement**: T1021.001, T1021.002, T0812, T0859
+- **Command and Control**: T1071
+- **Impact (OT)**: T0831, T0836
 
 ## Output di Incident
 
@@ -52,9 +52,9 @@ T1552  Unsecured Credentials        (Credential Access)
 
 ## Catatan Detection Engineering
 
-- Gunakan **ATT&CK for ICS** untuk event OT (bukan enterprise) — detail teknis
+- Gunakan **ATT&CK for ICS** untuk event OT (bukan enterprise): detail teknis
   ini menonjol di mata juri bertema detection engineering.
 - Setiap detection rule (Sigma-style) di-tag dengan teknik terkait agar coverage
   dapat diaudit.
-- Roadmap: tambahkan **ATT&CK Navigator layer** untuk memvisualisasikan coverage —
+- Roadmap: tambahkan **ATT&CK Navigator layer** untuk memvisualisasikan coverage : 
   nilai tambah dokumentasi.

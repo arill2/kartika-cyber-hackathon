@@ -1,4 +1,4 @@
-# 06 — Tech Stack
+# 06: Tech Stack
 
 Filosofi pemilihan: **cepat dibangun (solo), kredibel, mudah di-deploy (bobot 15%)**.
 

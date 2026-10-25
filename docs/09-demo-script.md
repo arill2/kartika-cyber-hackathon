@@ -1,4 +1,4 @@
-# 09 — Demo Script
+# 09: Demo Script
 
 Dua bagian: **video demo (syarat submit)** dan **demo live (final, 10 menit)**.
 
@@ -11,21 +11,21 @@ Dashboard + Collector bisa di laptop B atau laptop lain.
 
 Rekam rapi, ada narasi. Struktur:
 
-1. **0:00–0:30 — Masalah.** Tunjukkan betapa banyak alert FP-nya IDS biasa (atau
+1. **0:00–0:30: Masalah.** Tunjukkan betapa banyak alert FP-nya IDS biasa (atau
    cukup narasi). Nyatakan janji: "zero false positive by design."
-2. **0:30–1:00 — Arsitektur.** Tampilkan diagram (dari `02-arsitektur.md`).
-3. **1:00–2:00 — Pemasangan.** Jalankan installer 1 baris di server. Tunjukkan
+2. **0:30–1:00: Arsitektur.** Tampilkan diagram (dari `02-arsitektur.md`).
+3. **1:00–2:00: Pemasangan.** Jalankan installer 1 baris di server. Tunjukkan
    umpan terpasang (list port, file honeytoken).
-4. **2:00–3:00 — Serangan & deteksi IT.**
+4. **2:00–3:00: Serangan & deteksi IT.**
    - Dashboard masih bersih.
    - `nmap` dari attacker → alert recon + **fingerprint nmap**.
    - `hydra` ke decoy SSH → alert brute force.
    - Buka `/.env` palsu di browser → **honeytoken T1 critical** + Telegram masuk.
-5. **3:00–4:00 — Serangan & deteksi OT.**
+5. **3:00–4:00: Serangan & deteksi OT.**
    - Attacker sentuh decoy Modbus (502) → alert OT + MITRE for ICS.
-6. **4:00–4:30 — Incident + MITRE + AI summary.**
+6. **4:00–4:30: Incident + MITRE + AI summary.**
    - Tunjukkan 1 incident ter-korelasi, teknik MITRE, narasi AI.
-7. **4:30–5:00 — Penutup.** Air-gap friendly + 1-line deploy + impact.
+7. **4:30–5:00: Penutup.** Air-gap friendly + 1-line deploy + impact.
 
 ---
 
@@ -48,7 +48,7 @@ Rekam rapi, ada narasi. Struktur:
    → Alert **Active Scanning (T1595)**.
 4. **Brute force:** `hydra` ke decoy SSH 2222.
    → Alert **Brute Force (T1110)**.
-5. **Honeytoken凉的 kritikal:** buka `passwords.xlsx` / `.env` umpan.
+5. **Honeytoken kritikal:** buka `passwords.xlsx` / `.env` umpan.
    → Alert **CRITICAL (T1552/T1083)** + **notifikasi Telegram muncul di HP di depan juri.**
 6. **OT:** sentuh decoy Modbus 502 (modbus client).
    → Alert **OT/ICS + ATT&CK-for-ICS**.
@@ -58,11 +58,11 @@ Rekam rapi, ada narasi. Struktur:
 
 ### Kalimat pembuka demo
 > "Saya akan menyimulasikan penyusup yang mencoba bergerak di dalam jaringan.
-> IDS biasa akan kebanjiran noise. POLARIS? Lihat — dashboard masih bersih.
+> IDS biasa akan kebanjiran noise. POLARIS? Lihat: dashboard masih bersih.
 > Sekarang, teman saya mulai melakukan pemindaian..."
 
 ### Kalimat penutup
-> "Setiap interaksi yang Anda lihat adalah bukti intent — bukan tebakan.
+> "Setiap interaksi yang Anda lihat adalah bukti intent: bukan tebakan.
 > Nol false positive, jalan tanpa internet, dan bisa dipasang dalam satu baris.
 > Ini yang kami tawarkan untuk pertahanan siber satuan."
 

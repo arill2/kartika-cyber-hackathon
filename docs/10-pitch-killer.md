@@ -1,4 +1,4 @@
-# 10 — Pitch Killer & Objection Handling
+# 10: Pitch Killer & Objection Handling
 
 ## 1. Tagline
 
@@ -13,7 +13,7 @@ Alternatif:
 
 **Analogi rumah:** IDS anomali = satpam yang nebak "orang ini mencurigakan apa
 bukan?" → banyak salah tuduh. POLARIS = kamu taruh **uang bertanda** di meja.
-Siapa pun yang ambil, itu pencuri — nggak perlu nebak.
+Siapa pun yang ambil, itu pencuri, nggak perlu nebak.
 
 **Analogi militer:** deception adalah taktik militer klasik. Kita menempatkan
 *decoy* yang membuat penyusup membuka diri.
@@ -34,7 +34,7 @@ Siapa pun yang ambil, itu pencuri — nggak perlu nebak.
 **Q: "Bagaimana kalau attacker pintar dan mengenali honeypot?"**
 > Realisme jadi fokus desain (banner, timing, lokasi, variasi). Meski dikenali,
 > biaya attacker naik dan interaksi pertama tetap tercatat. Selain itu, detection
-> kami tidak bergantung pada attacker "tertipu" — cukup mereka **menyentuh**.
+> kami tidak bergantung pada attacker "tertipu": cukup mereka **menyentuh**.
 
 **Q: "AI-nya bisa halusinasi dong?"**
 > AI **hanya meringkas**, tidak memutuskan. Keputusan deteksi murni deterministik
@@ -43,7 +43,7 @@ Siapa pun yang ambil, itu pencuri — nggak perlu nebak.
 **Q: "False positive-nya benar nol?"**
 > "Hampir nol, by design." Kami tetap jujur: bisa ada edge case (user sah salah
 > buka file umpan), karena itu tier kepercayaan & konteks dipakai. Tapi jauh di
-> bawah IDS berbasis anomali. Kejujuran ini penting — juri menghargainya.
+> bawah IDS berbasis anomali. Kejujuran ini penting: juri menghargainya.
 
 **Q: "Kenapa nggak pakai ML anomali saja?"**
 > ML anomali = sumber false positive & butuh data latih besar. Untuk lingkungan
@@ -51,7 +51,7 @@ Siapa pun yang ambil, itu pencuri — nggak perlu nebak.
 > jadi pelengkap, bukan pondasi.
 
 **Q: "Apakah ini jalan di jaringan air-gap?"**
-> Ya — seluruh komponen on-prem, nol dependensi internet. Ini justru alasan
+> Ya: seluruh komponen on-prem, nol dependensi internet. Ini justru alasan
 > utama kami memilih arsitektur lokal.
 
 **Q: "Bagaimana kalau agent-nya sendiri kena compromise?"**
@@ -75,7 +75,7 @@ Siapa pun yang ambil, itu pencuri — nggak perlu nebak.
 
 ## 6. Closing Statement
 
-> "Ancaman siber tidak mengenal seragam — dan pertahanannya juga tidak bisa
+> "Ancaman siber tidak mengenal seragam: dan pertahanannya juga tidak bisa
 > bergantung pada satu lapis. POLARIS menambah lapis yang paling sulit ditipu:
 > **kebenaran bahwa penyusup tidak bisa menyentuh umpan tanpa membuka diri.**
 > Deterministik, siap air-gap, siap lapangan."

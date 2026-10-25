@@ -1,7 +1,7 @@
-# 05 — Decoy OT/ICS
+# 05: Decoy OT/ICS
 
 Pembeda utama untuk kriteria **"Relevansi IT/OT TNI AD" (25%)**. Peserta lain
-kebanyakan cuma main di log server IT — kita sentuh domain OT/ICS (SCADA, PLC, HMI).
+kebanyakan cuma main di log server IT, kita sentuh domain OT/ICS (SCADA, PLC, HMI).
 
 > **Prinsip keselamatan:** decoy OT adalah **simulasi protokol**, bukan perangkat
 > nyata. Tidak terhubung ke proses fisik. 100% observasi, nol dampak operasional.
@@ -26,7 +26,7 @@ kebanyakan cuma main di log server IT — kita sentuh domain OT/ICS (SCADA, PLC,
 | **IEC 60870-5-104** | 2404 | SCADA tenaga listrik | Sangat kritikal |
 | **OPC UA** | 4840 | Interoperabilitas industri | Modern, populer |
 
-**Prioritas MVP:** Modbus/TCP (502) — paling mudah & paling ikonik.
+**Prioritas MVP:** Modbus/TCP (502), paling mudah & paling ikonik.
 
 ## 3. Cara Kerja Decoy OT
 
@@ -58,7 +58,7 @@ Kombinasi decoy HMI + decoy Modbus = skenario OT yang meyakinkan untuk demo.
 | Login ke HMI palsu | T0812 Default Credentials / T0859 Valid Accounts |
 | Scan port OT | T0846 |
 
-> Gunakan **MITRE ATT&CK for ICS** (bukan versi enterprise) untuk pemetaan OT —
+> Gunakan **MITRE ATT&CK for ICS** (bukan versi enterprise) untuk pemetaan OT : 
 > ini detail yang dicatat juri bertema detection engineering.
 
 ## 6. Realisme Decoy OT
@@ -67,7 +67,7 @@ Kombinasi decoy HMI + decoy Modbus = skenario OT yang meyakinkan untuk demo.
 - Respons timing menyerupai perangkat asli (bukan instan).
 - Banner/error yang konsisten dengan vendor yang diklaim.
 - Jangan taruh decoy OT di host yang jelas-jelas bukan segmen OT bila ingin
-  realistis — tapi untuk demo, satu host bisa menampung IT + OT decoy (jelaskan
+  realistis, tapi untuk demo, satu host bisa menampung IT + OT decoy (jelaskan
   sebagai "sensor tunggal multi-protokol").
 
 ## 7. Batasan & Kejujuran Teknis
@@ -76,10 +76,10 @@ Kombinasi decoy HMI + decoy Modbus = skenario OT yang meyakinkan untuk demo.
 - Untuk lingkungan nyata, decoy OT paling tepat ditaruh di **segmen OT** atau
   **jembatan IT/OT** (paling sering jadi jalur serangan).
 - Nilai utamanya: **early warning bersignal tinggi** bahwa ada pihak tak sah
-  menyentuh protokol industri — bukan kontrol penuh OT.
+  menyentuh protokol industri, bukan kontrol penuh OT.
 
 ## 8. Rencana Implementasi (MVP → Lanjut)
 
-1. **MVP:** Modbus/TCP decoy (port 502) — respons function code dasar + logging.
+1. **MVP:** Modbus/TCP decoy (port 502): respons function code dasar + logging.
 2. **Tahap 2:** Decoy HMI web + S7comm basic.
 3. **Tahap 3:** DNP3 + mapping ATT&CK-for-ICS lengkap + sensor multi-protokol.

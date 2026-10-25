@@ -1,4 +1,4 @@
-# 04 — Engine Deteksi
+# 04: Engine Deteksi
 
 Otak POLARIS. Empat lapis: **fingerprint → correlation → MITRE mapping → severity**,
 plus AI summarizer opsional.
@@ -44,7 +44,7 @@ IP 203.0.113.7 dalam 4 menit:
   • koneksi ke 12 decoy port        (T1046 Network Service Scanning)
   • 3x hit web decoy /.env          (T1595 Active Scanning)
   • 2x auth attempt decoy SSH       (T1110 Brute Force)
-  → INCIDENT: "Attempted Intrusion — active scanning + brute force"
+  → INCIDENT: "Attempted Intrusion, active scanning + brute force"
     severity: HIGH
 ```
 

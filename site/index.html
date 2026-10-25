@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POLARIS: peringatan dini berbasis tipuan untuk jaringan IT dan OT</title>
+<meta name="description" content="POLARIS menanam umpan yang tidak pernah disentuh pengguna sah, sehingga setiap interaksi adalah bukti intent. Deterministik, nol false positive, jalan on-prem tanpa cloud.">
+<meta name="theme-color" content="#0e1116">
+<meta property="og:title" content="POLARIS: peringatan dini berbasis tipuan untuk jaringan IT dan OT">
+<meta property="og:description" content="Setiap interaksi dengan umpan adalah bukti, bukan tebakan. Deterministik, nol false positive, on-prem.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/emblem.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Lompat ke konten</a>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/>
+      <circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="brand-text">
+      <span class="name">POLARIS</span>
+      <span class="tagline">Peringatan dini berbasis tipuan untuk jaringan IT dan OT</span>
+    </span>
+  </div>
+
+  <nav class="sitenav" aria-label="Bagian halaman">
+    <a href="#masalah">Masalah</a>
+    <a href="#inversi">Inversi</a>
+    <a href="#umpan">Umpan</a>
+    <a href="#alur">Alur</a>
+    <a href="#bukti">Bukti</a>
+    <a href="#jalankan">Jalankan</a>
+    <a href="#batas">Batas</a>
+  </nav>
+
+  <p class="repo-link">
+    <a href="https://github.com/arill2/kartika-cyber-hackathon">Sumber lengkap di GitHub</a>
+  </p>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================ hero -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero-copy">
+      <p class="eyebrow">Kartika Cyber Hackathon 2026, kategori 02 Defensive Shield</p>
+      <h1 id="hero-h">Firewall menahan yang terlihat.<br>POLARIS menangkap yang menyembunyikan diri.</h1>
+      <p class="lede">
+        Kami menanam umpan di tempat yang hanya menarik bagi penyerang: port palsu, berkas
+        kredensial, kunci SSH, panel admin, dan perangkat OT tiruan. Umpan itu tidak
+        pernah dipakai operasi normal, jadi setiap sentuhan adalah bukti intent, bukan
+        tebakan statistik.
+      </p>
+      <p class="cta-row">
+        <a class="cta" href="#jalankan">Jalankan sendiri dalam satu baris</a>
+        <a class="cta-ghost" href="#bukti">Lihat log insiden nyata</a>
+      </p>
+    </div>
+
+    <!-- angka di bawah ini berasal dari satu eksekusi demo, bukan perkiraan -->
+    <div class="hero-stats">
+      <dl class="readouts" aria-label="Hasil satu eksekusi demo di satu host">
+        <div class="readout"><dt>Event umpan</dt><dd>234</dd></div>
+        <div class="readout"><dt>Incident</dt><dd>1</dd></div>
+        <div class="readout"><dt>Skor</dt><dd>410</dd></div>
+        <div class="readout ok"><dt>False positive</dt><dd>0</dd></div>
+        <div class="readout"><dt>Teknik ATT&amp;CK</dt><dd>12</dd></div>
+        <div class="readout"><dt>Listener umpan</dt><dd>32</dd></div>
+        <div class="readout"><dt>Jenis umpan tersentuh</dt><dd>10</dd></div>
+        <div class="readout"><dt>Event disaring</dt><dd>2</dd></div>
+      </dl>
+      <p class="readout-note">
+        Sumber angka: satu kali <code>demo/demo.sh</code> pada 25 Oktober 2026, satu host,
+        penyerang dan sensor di mesin yang sama. Rinciannya ada di bagian
+        <a href="#bukti">Bukti</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ masalah -->
+  <section id="masalah" class="band" aria-labelledby="masalah-h">
+    <h2 id="masalah-h">Tiga masalah struktural, bukan kekurangan alat</h2>
+    <ol class="findings">
+      <li>
+        <span class="num">01</span>
+        <div>
+          <h3>Alert fatigue</h3>
+          <p>IDS dan SIEM berbasis anomali menghasilkan ratusan sampai ribuan alert per hari.
+          Mayoritas keliru. Sinyal penting tenggelam di antara noise, dan analis berhenti
+          mempercayai sistemnya.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div>
+          <h3>Penyerang yang sudah masuk jadi tak terlihat</h3>
+          <p>Perangkat perimeter tidak melihat apa yang terjadi setelah initial access.
+          Pemindaian internal, lateral movement, dan pencarian kredensial berjalan di dalam,
+          di jalur yang dianggap tepercaya.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div>
+          <h3>Konteks jaringan militer</h3>
+          <p>Banyak jaringan TNI AD terisolasi atau air-gap, dan mencampur IT dengan OT
+          seperti SCADA, PLC, serta HMI. Solusi yang bergantung pada cloud atau threat
+          intelligence eksternal tidak bisa dipasang di sana.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================================ inversi -->
+  <section id="inversi" class="band alt" aria-labelledby="inversi-h">
+    <h2 id="inversi-h">Kesalahan terbesarnya: mencoba menebak arti kata normal</h2>
+    <p class="wide">
+      Deteksi klasik menghabiskan tenaga untuk memisahkan lalu lintas normal dari yang
+      mencurigakan. Pemisahan itu sifatnya probabilistik, dan di situlah false positive
+      lahir. POLARIS membalik logikanya. Kami tidak menebak, kami menanam sesuatu yang
+      secara desain mustahil disentuh pengguna sah.
+    </p>
+
+    <table class="compare">
+      <caption>Perbedaan pendekatan, satu kolom dibaca sebagai pasangan</caption>
+      <thead>
+        <tr><th scope="col">IDS atau IPS konvensional</th><th scope="col">POLARIS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Deteksi probabilistik lewat anomali</td><td>Deteksi deterministik lewat umpan</td></tr>
+        <tr><td>Ribuan alert, banyak yang keliru</td><td>Sedikit alert, berasal dari bukti sentuhan</td></tr>
+        <tr><td>Perlu tuning ambang batas</td><td>Tidak ada ambang batas untuk dituning</td></tr>
+        <tr><td>Bergantung pada pola serangan yang sudah dikenal</td><td>Bergantung pada satu fakta: tidak ada pengguna sah di umpan</td></tr>
+        <tr><td>Butuh cloud atau threat intelligence</td><td>Sepenuhnya on-prem, jalan di jaringan tertutup</td></tr>
+        <tr><td>Hanya IT</td><td>IT dan OT atau ICS</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============================================================ umpan -->
+  <section id="umpan" class="band" aria-labelledby="umpan-h">
+    <h2 id="umpan-h">Apa yang ditanam</h2>
+    <p class="wide">
+      Seluruh daftar di bawah ini adalah isi nyata dari satu binary agen Go. Tidak ada
+      dependensi eksternal, hanya pustaka standar Go termasuk <code>syscall</code> untuk
+      pemantauan berkas lewat inotify.
+    </p>
+
+    <div class="tiles wide-first">
+      <article class="tile">
+        <h3>32 listener port umpan</h3>
+        <p class="muted">Satu proses membuka semua port ini dan mencatat setiap koneksi
+        beserta potongan payload-nya.</p>
+        <ul class="ports">
+          <li>:21 <span>ftp</span></li><li>:23 <span>telnet</span></li><li>:25 <span>smtp</span></li>
+          <li>:80 <span>http</span></li><li>:135 <span>msrpc</span></li><li>:139 <span>netbios</span></li>
+          <li>:443 <span>https</span></li><li>:445 <span>smb</span></li><li>:502 <span>modbus</span></li>
+          <li>:1080 <span>socks</span></li><li>:1433 <span>mssql</span></li><li>:1521 <span>oracle</span></li>
+          <li>:2049 <span>nfs</span></li><li>:2222 <span>ssh</span></li><li>:2375 <span>docker</span></li>
+          <li>:3306 <span>mysql</span></li><li>:3389 <span>rdp</span></li><li>:5000 <span>http-alt</span></li>
+          <li>:5432 <span>postgres</span></li><li>:5900 <span>vnc</span></li><li>:5985 <span>winrm</span></li>
+          <li>:6379 <span>redis</span></li><li>:7001 <span>weblogic</span></li><li>:8001 <span>http-alt</span></li>
+          <li>:8080 <span>hmi</span></li><li>:8443 <span>https-alt</span></li><li>:8888 <span>http-alt</span></li>
+          <li>:9000 <span>portainer</span></li><li>:9200 <span>elasticsearch</span></li><li>:10000 <span>webmin</span></li>
+          <li>:11211 <span>memcached</span></li><li>:27017 <span>mongodb</span></li>
+        </ul>
+      </article>
+
+      <article class="tile">
+        <h3>11 berkas honeytoken</h3>
+        <p class="muted">Dipantau dengan inotify. Membaca isinya sudah cukup untuk memicu
+        event, tanpa perlu ada proses yang mengeksekusi apa pun.</p>
+        <ul class="files">
+          <li><code>.env</code></li>
+          <li><code>credentials.txt</code></li>
+          <li><code>id_rsa_backup</code></li>
+          <li><code>.aws/credentials</code></li>
+          <li><code>.git/config</code></li>
+          <li><code>vault-token.txt</code></li>
+          <li><code>k8s-prod.yaml</code></li>
+          <li><code>backup_db.sql</code></li>
+          <li><code>wp-config.php.bak</code></li>
+          <li><code>passwords.xlsx</code></li>
+        </ul>
+      </article>
+
+      <article class="tile">
+        <h3>Kredensial canary</h3>
+        <p class="muted">Kredensial palsu yang ditanam di berkas umpan. Di dalamnya ada URL
+        beacon khusus. Siapa pun yang memakai kredensial itu akan menghubungi URL tersebut,
+        dan itu bukti langsung bahwa kredensial sudah dipanen dan dipakai.</p>
+      </article>
+
+      <article class="tile">
+        <h3>Decoy OT dan ICS</h3>
+        <p class="muted">Modbus TCP pada :502, HMI pada :8080, plus banner perangkat.
+        Proba satu perangkat menyentuh sebagian topologi, dan itu tampak di satu peta
+        insiden, bukan tersebar.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================ alur -->
+  <section id="alur" class="band alt" aria-labelledby="alur-h">
+    <h2 id="alur-h">Alur dari sentuhan sampai keputusan</h2>
+    <ol class="pipeline">
+      <li>
+        <h3>Tanam</h3>
+        <p>Agen menaruh umpan dan membuka listener. Setiap umpan punya alamat yang tidak
+        pernah dipakai operasi normal, jadi tidak ada aktivitas sah yang bisa salah dibaca.</p>
+      </li>
+      <li>
+        <h3>Tangkap</h3>
+        <p>Setiap koneksi, setiap pembacaan berkas, dan setiap permintaan HTTP dicatat
+        lengkap dengan waktu, alamat sumber, potongan payload, dan sidik jari berkas.</p>
+      </li>
+      <li>
+        <h3>Saring</h3>
+        <p>Aktivitas jinak yang sudah dikenal, termasuk health check internal, disisihkan
+        ke jalur terpisah dan tetap disimpan untuk audit. Angkanya muncul di dashboard
+        sebagai baris Disaring, bukan dihapus diam-diam.</p>
+      </li>
+      <li>
+        <h3>Korelasi dan nilai</h3>
+        <p>Event dari satu sumber digabung menjadi satu incident, diberi skor severity,
+        dan dipetakan ke teknik ATT&amp;CK. Pola koneksi dipakai untuk menebak tool penyerang
+        beserta tingkat keyakinannya.</p>
+      </li>
+      <li>
+        <h3>Umumkan</h3>
+        <p>Insiden muncul langsung di dashboard lewat WebSocket, dan ringkasan dikirim ke
+        Telegram atau webhook. Ringkasannya ditulis dari data, bukan dari templat.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================================ bukti -->
+  <section id="bukti" class="band" aria-labelledby="bukti-h">
+    <h2 id="bukti-h">Bukti dari eksekusi nyata</h2>
+    <p class="wide">
+      Yang di bawah ini dijalankan dengan alat penyerang sungguhan: <code>nmap</code> untuk
+      pengintaian layanan, <code>masscan</code> untuk penyapuan cepat, <code>nikto</code>
+      untuk pemeriksaan web, dan <code>hydra</code> untuk credential spray ke SSH.
+    </p>
+
+    <figure class="shot">
+      <img src="assets/dashboard-desktop.png" width="1600" height="1000" loading="lazy"
+           alt="Dashboard POLARIS: kolom kiri berisi log umpan yang tertangkap berurutan, kolom tengah berisi incident ter-korelasi bernilai 410 dengan label CRITICAL, kolom kanan berisi profil penyerang.">
+      <figcaption>
+        <strong>Dashboard, kondisi setelah demo.</strong> Log umpan di kiri masih mentah dan
+        berurutan. Incident di tengah adalah hasil korelasi, 234 event menjadi satu baris.
+        Profil di kanan merangkum sumber yang sama menjadi empat angka.
+      </figcaption>
+    </figure>
+
+    <div class="verdict">
+      <h3>Ringkasan otomatis yang dihasilkan sistem</h3>
+      <p class="quote">
+        IP 127.0.0.1 memicu 234 interaksi umpan dalam 1.5 menit (canary credential use, port
+        scan, credential brute force, OT/ICS probe, honeytoken access, web recon), menyentuh
+        10 jenis umpan berbeda. Ciri pola mengarah ke nmap dengan keyakinan 86%. Terdapat
+        probing terhadap decoy protokol OT/ICS, potensi ancaman ke proses fisik. Kredensial
+        umpan (canary) terbukti digunakan, indikasi kuat kompromi. Tidak ada aktivitas sah
+        dari IP ini terhadap umpan.
+      </p>
+      <dl class="spec">
+        <dt>Severity</dt><dd class="hi">CRITICAL</dd>
+        <dt>Skor</dt><dd>410</dd>
+        <dt>Event ter-korelasi</dt><dd>234</dd>
+        <dt>Tool terduga</dt><dd>nmap (86%)</dd>
+        <dt>Jenis umpan tersentuh</dt><dd>10</dd>
+        <dt>False positive</dt><dd>0</dd>
+      </dl>
+    </div>
+
+    <div class="tiles">
+      <article class="tile">
+        <h3>12 teknik ATT&amp;CK</h3>
+        <p class="muted">Dikelompokkan per taktik supaya bisa dibaca, bukan dinding 12 label.</p>
+        <dl class="mitre">
+          <dt>Reconnaissance</dt><dd>T1595</dd>
+          <dt>Discovery</dt><dd>T1046, T1083</dd>
+          <dt>Initial Access</dt><dd>T1190</dd>
+          <dt>Lateral Movement</dt><dd>T1021.004</dd>
+          <dt>Credential Access</dt><dd>T1110, T1552</dd>
+          <dt>Defense Evasion</dt><dd>T1078</dd>
+          <dt>ICS Discovery</dt><dd>T0846</dd>
+          <dt>ICS Credential Access</dt><dd>T0812</dd>
+          <dt>ICS Impact</dt><dd>T0835, T0836</dd>
+        </dl>
+      </article>
+
+      <article class="tile">
+        <h3>Atribusi tool beserta alasannya</h3>
+        <p class="muted">Ciri pola yang dibandingkan, bukan sekadar tebakan nama.</p>
+        <table class="mini">
+          <thead><tr><th scope="col">Tool</th><th scope="col">Ciri yang menjadi dasar</th></tr></thead>
+          <tbody>
+            <tr><td>nmap</td><td>Koneksi bertahap per port, jeda tidak rata, pemeriksaan versi layanan</td></tr>
+            <tr><td>masscan</td><td>Laju sangat tinggi, banyak port pada satu waktu</td></tr>
+            <tr><td>hydra</td><td>Percobaan login berulang pada port yang sama</td></tr>
+            <tr><td>curl atau wget</td><td>Satu permintaan HTTP, satu user agent tetap</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="tile">
+        <h3>Decoy SSH tidak pernah memberi akses</h3>
+        <p class="muted">Ini hasil yang kami lihat, bukan klaim. Hydra memang tersambung dan
+        mengirim banner, tetapi setiap percobaan berakhir putus. Umpan tidak memiliki akun
+        sah. Setiap percobaan tetap tercatat, jadi serangan yang gagal tetap menjadi
+        peringatan dini.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================ jalankan -->
+  <section id="jalankan" class="band alt" aria-labelledby="jalankan-h">
+    <h2 id="jalankan-h">Menjalankannya</h2>
+    <p class="wide">
+      Agen berupa satu binary Go tanpa dependensi. Collector dan engine berjalan dengan
+      Python dan FastAPI. Dashboard adalah berkas statis tanpa build step.
+    </p>
+
+    <div class="tiles">
+      <article class="tile code">
+        <h3>Pasang agen</h3>
+        <pre><code>curl -fsSL https://raw.githubusercontent.com/arill2/kartika-cyber-hackathon/main/installer/install.sh | bash</code></pre>
+        <p class="muted">Untuk jaringan tertutup, ada mode local dari binary yang sudah ada.</p>
+      </article>
+
+      <article class="tile code">
+        <h3>Nyalakan seluruh tumpukan saat mengembangkan</h3>
+        <pre><code>bash scripts/dev-up.sh</code></pre>
+        <p class="muted">Dashboard tersedia di <code>http://127.0.0.1:8787</code>. Untuk
+        mematikan, <code>bash scripts/dev-down.sh</code>.</p>
+      </article>
+
+      <article class="tile code">
+        <h3>Jalankan demo penyerangan sungguhan</h3>
+        <pre><code>AUTO=0 bash demo/demo.sh</code></pre>
+        <p class="muted">Setiap langkah berhenti menunggu tombol Enter, sehingga cocok untuk
+        rekaman video. Isinya nmap, masscan, nikto, hydra, dan probe Modbus.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================ batas -->
+  <section id="batas" class="band" aria-labelledby="batas-h">
+    <h2 id="batas-h">Batas yang kami akui</h2>
+    <p class="wide">
+      Bagian ini ditulis supaya tidak ada klaim yang lebih besar dari buktinya.
+    </p>
+    <ul class="limits">
+      <li>
+        <strong>Demo berjalan di satu host.</strong> Penyerang dan sensor berada di mesin
+        yang sama, jadi sumber tercatat sebagai 127.0.0.1. Mode standalone untuk banyak node
+        sudah ada di kode, tetapi belum kami uji di jaringan terpisah.
+      </li>
+      <li>
+        <strong>Pembacaan berkas umpan tidak bisa dipisahkan per proses.</strong> inotify
+        melaporkan bahwa berkas dibaca, bukan proses mana yang membacanya. Alamat sumber
+        untuk event jenis ini selalu sama.
+      </li>
+      <li>
+        <strong>Atribusi tool adalah perkiraan.</strong> Angka keyakinan dihitung dari ciri
+        pola yang kami kumpulkan. Penyerang yang menulis alatnya sendiri bisa menyamarkan
+        pola itu.
+      </li>
+      <li>
+        <strong>Ringkasan otomatis bersifat deterministik.</strong> Saat ini ringkasan
+        disusun dari templat yang diisi data, tanpa model bahasa. Kualitasnya bergantung
+        pada fakta yang benar-benar tercatat.
+      </li>
+      <li>
+        <strong>Umpan OT atau ICS bersifat tiruan, bukan perangkat asli.</strong> Yang
+        dideteksi adalah pola probe, bukan perilaku protokol industri yang lengkap.
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-block">
+      <h2>POLARIS</h2>
+      <p>Peringatan dini berbasis tipuan. Deterministik sejak desain, jalan tanpa cloud.</p>
+    </div>
+    <div class="foot-block">
+      <h2>Berkas</h2>
+      <ul>
+        <li><a href="https://github.com/arill2/kartika-cyber-hackathon">Repositori kode dan dokumen</a></li>
+        <li><a href="https://github.com/arill2/kartika-cyber-hackathon/blob/main/DESIGN.md">Arah desain dan alasan pemilihannya</a></li>
+        <li><a href="https://github.com/arill2/kartika-cyber-hackathon/blob/main/docs/12-mitre-mapping.md">Tabel pemetaan MITRE ATT&amp;CK</a></li>
+      </ul>
+    </div>
+    <div class="foot-block">
+      <h2>Konteks</h2>
+      <ul>
+        <li>Kartika Cyber Hackathon 2026</li>
+        <li>PUSSIBERAD bersama Codepolitan</li>
+        <li>Kategori 02 Defensive Shield</li>
+      </ul>
+    </div>
+  </div>
+  <p class="foot-note">
+    Seluruh angka di halaman ini berasal dari satu eksekusi demo pada 25 Oktober 2026.
+    Tidak ada statistik, ulasan, atau logo pihak ketiga yang dipakai.
+  </p>
+</footer>
+
+</body>
+</html>

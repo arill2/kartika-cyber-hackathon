@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>POLARIS thumbnail 1200x630</title>
+<style>
+  /* Sumber gambar thumbnail. Hasil render: thumbnail-1200x630.png.
+     Ukuran dipatok 1200x630. Sebagian besar permukaan berwarna rata supaya
+     berkas tetap jauh di bawah batas 500 KB. Arah desain dan alasan: DESIGN.md. */
+  :root{
+    --bg:#0e1116; --panel:#161a20; --panel-2:#1c2128;
+    --seam:#2b323c; --line:#647082;
+    --text:#e9edf2; --muted:#9aa5b1; --accent:#5eead4;
+    --crit:#ff6b6b; --high:#ff9f43; --ok:#6ddb8f;
+    --f-ui:ui-sans-serif,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --f-data:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--f-ui);
+    display:grid; grid-template-columns:1fr 274px; grid-template-rows:auto auto 1fr auto
+  }
+
+  header{
+    grid-column:1 / -1; grid-row:1; display:flex; align-items:center; gap:14px;
+    padding:17px 32px; background:var(--panel); border-bottom:1px solid var(--seam)
+  }
+  .mark{width:32px;height:32px;color:var(--accent)}
+  .brand{display:flex;flex-direction:column;line-height:1.18}
+  .name{font-weight:750;letter-spacing:.24em;font-size:21px}
+  .tag{font-size:12.5px;color:var(--muted)}
+  .kicker{
+    margin-left:auto; font-family:var(--f-data); font-size:12.5px;
+    color:var(--muted); text-align:right
+  }
+  .kicker b{display:block;color:var(--text);font-weight:650}
+
+  .headline{grid-column:1; grid-row:2; padding:26px 32px 0; max-width:880px}
+  h1{margin:0;font-size:44px;line-height:1.14;letter-spacing:-.02em;font-weight:680}
+  h1 em{font-style:normal;color:var(--accent)}
+
+  .shot{
+    grid-column:1; grid-row:3; margin:24px 32px 0; overflow:hidden;
+    border:1px solid var(--line); border-radius:6px; position:relative;
+    background:var(--panel); min-height:0
+  }
+  .shot img{width:100%;display:block;margin-top:-58px}
+  .shot::after{
+    content:"satu incident, 234 event, nol false positive";
+    position:absolute;left:0;bottom:0;right:0;
+    background:rgba(14,17,22,.9); border-top:1px solid var(--seam);
+    padding:7px 14px; font-family:var(--f-data); font-size:12px; color:#c6d0dc
+  }
+
+  .side{
+    grid-row:2 / 5; grid-column:2; background:var(--panel);
+    border-left:1px solid var(--seam); display:flex; flex-direction:column
+  }
+  .verdict{padding:20px 22px 16px;border-bottom:1px solid var(--seam)}
+  .sev{
+    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;
+    background:#2a1113;color:var(--crit);border:1px solid #8b2b31;
+    border-radius:3px;padding:3px 9px
+  }
+  .score{margin:13px 0 0;font-family:var(--f-data);font-size:48px;font-weight:700;line-height:1;color:var(--crit)}
+  .score small{display:block;font-family:var(--f-ui);font-size:11.5px;font-weight:600;color:var(--muted);margin-top:6px}
+  .verdict h2{margin:16px 0 6px;font-size:12.5px;color:var(--muted);letter-spacing:.05em;font-weight:650}
+  .verdict p{margin:0;font-size:13px;line-height:1.48;color:#c6d0dc}
+
+  .side ul{list-style:none;margin:0;padding:0;flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+  .side li{
+    display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+    padding:9px 22px;border-top:1px solid var(--seam)
+  }
+  .side li span{font-size:12.5px;color:var(--muted)}
+  .side li b{font-family:var(--f-data);font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+  .side li b.ok{color:var(--ok)}
+
+  footer{
+    grid-column:1; grid-row:4; padding:14px 32px 20px;
+    display:flex; align-items:center; gap:9px; flex-wrap:wrap
+  }
+  .chip{
+    font-family:var(--f-data);font-size:12.5px;color:#b6c0cc;
+    background:#1b2129;border:1px solid var(--seam);border-radius:3px;padding:4px 10px
+  }
+  .chip.hot{color:var(--accent);border-color:#2b6b60;background:#12302c}
+  .sig{margin-left:auto;font-size:12px;color:var(--line);font-family:var(--f-data)}
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <path d="M12 2.4 20.2 7v10L12 21.6 3.8 17V7z"/>
+    <circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+  </svg>
+  <span class="brand">
+    <span class="name">POLARIS</span>
+    <span class="tag">Peringatan dini berbasis tipuan untuk jaringan IT dan OT</span>
+  </span>
+  <p class="kicker">Kartika Cyber Hackathon 2026<b>Kategori 02 Defensive Shield</b></p>
+</header>
+
+<div class="headline">
+  <h1>Firewall menahan yang terlihat.<br><em>POLARIS</em> menangkap yang menyembunyikan diri.</h1>
+</div>
+
+<div class="shot">
+  <img src="../site/assets/dashboard-desktop.png" alt="Dashboard POLARIS setelah demo penyerangan, menampilkan log umpan dan satu incident CRITICAL bernilai 410.">
+</div>
+
+<footer>
+  <span class="chip hot">deteksi deterministik</span>
+  <span class="chip">satu binary Go</span>
+  <span class="chip">on-prem, jalan di jaringan tertutup</span>
+  <span class="sig">demo nyata, 25 Okt 2026</span>
+</footer>
+
+<aside class="side">
+  <div class="verdict">
+    <span class="sev">CRITICAL</span>
+    <p class="score">410<small>skor severity</small></p>
+    <h2>Ringkasan sistem</h2>
+    <p>Ciri pola mengarah ke nmap dengan keyakinan 86%. Probing protokol OT/ICS terdeteksi
+    pada decoy Modbus dan HMI.</p>
+  </div>
+  <ul>
+    <li><span>Event umpan</span><b>234</b></li>
+    <li><span>Incident</span><b>1</b></li>
+    <li><span>Teknik ATT&amp;CK</span><b>12</b></li>
+    <li><span>Listener umpan</span><b>32</b></li>
+    <li><span>False positive</span><b class="ok">0</b></li>
+  </ul>
+</aside>
+
+</body>
+</html>
