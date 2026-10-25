@@ -178,6 +178,7 @@ kartika-cyber-hackathon/
 ├── scripts/            # dev-up.sh, dev-down.sh
 ├── docs/               # dokumentasi teknis 00 sampai 14
 ├── site/               # landing page untuk Link Karya (GitHub Pages)
+│   └── files/          # salinan publik slide dan proposal dalam PDF
 ├── submission/         # slide deck, thumbnail, proposal
 ├── screenshot/         # tangkapan layar untuk form submission
 ├── DESIGN.md           # arah desain UI + tabel referensi + catatan perubahan
@@ -190,13 +191,16 @@ kartika-cyber-hackathon/
 
 Peta langsung ke lima kolom form Codepolitan:
 
-| Kolom form | Isi | Berkas |
+| Kolom form | Isi | Berkas atau URL |
 |---|---|---|
-| Link Karya/Project | landing page publik lewat GitHub Pages | `site/index.html` |
+| Link Karya/Project | landing page publik | https://arill2.github.io/kartika-cyber-hackathon/ (`site/`) |
 | Video demo | rekaman 3 sampai 5 menit | naskah di [`docs/13-video-script.md`](docs/13-video-script.md) |
-| Slide penjelasan | 14 slide, PDF 16:9 | `submission/POLARIS_Slides_Kartika_2026.pdf` |
+| Slide penjelasan | 14 slide, PDF 16:9 | https://arill2.github.io/kartika-cyber-hackathon/files/POLARIS_Slides_Kartika_2026.pdf |
 | Thumbnail 1200x630 | PNG, di bawah 500KB | `submission/thumbnail-1200x630.png` |
 | Screenshot (1 sampai 5) | dashboard, detail incident, tampilan mobile | `screenshot/01-dashboard.png`, `02-incident-detail.png`, `03-mobile.png` |
+
+Repositori publiknya di https://github.com/arill2/kartika-cyber-hackathon
+(cabang `main` berisi kode, cabang `gh-pages` berisi landing page).
 
 Proposal lengkap ada di `submission/POLARIS_Proposal_Kartika_2026.pdf`.
 
@@ -291,6 +295,6 @@ tabel referensi, dan catatan perubahan.
 - [x] Installer satu baris dan unit systemd
 - [x] Landing page, slide 14 halaman, thumbnail 1200x630, screenshot
 - [x] Naskah video dan dokumen bukti
+- [x] Landing page tayang lewat GitHub Pages, slide dan proposal bisa diunduh dari sana
 - [ ] Rekam video demo (butuh perekam layar, ffmpeg tidak tersedia di host ini)
-- [ ] Deploy `site/` ke GitHub Pages
 - [ ] Register tim, ikut webinar pembekalan, submit ke Codepolitan
